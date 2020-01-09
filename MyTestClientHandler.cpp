@@ -2,6 +2,7 @@
 // Created by avital on 09/01/2020.
 //
 
+#include <cstring>
 #include "MyTestClientHandler.h"
 MyTestClientHandler::MyTestClientHandler(Solver<string, string>* solver1, CacheManager<string>* cache1) {
     solver = solver1;
@@ -23,10 +24,13 @@ void MyTestClientHandler::handleClient(int client_socket) {
             cache->insert(line, solution);
         }
         //return solution
-       // int is_sent = send(client_socket, solution, solution.length(), 0);
-       // if (is_sent == -1) {
-       //     cerr << "error sending message" << endl;
+        const char * a;
+        std::strcpy (const_cast<char *>(a), solution.c_str());
+        int is_sent;
+        is_sent= send(client_socket, a, sizeof(a), 0);
+        if (is_sent == -1) {
+            cerr << "error sending message" << endl;
 
-      //  }
+        }
     }
 }
