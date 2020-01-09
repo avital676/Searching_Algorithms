@@ -11,13 +11,14 @@
 
 namespace boot {
     class Main {
-        void main(char* args) {
-            int port = args[0];
-            Solver<string, string> *s = new StringReverser();
-            CacheManager<string> *cache = new FileCacheManager<string>(5);
-            ClientHandler *c = new MyTestClientHandler<string >(*s, *cache);
+    public:
+        Main(){};
+        void main(int port) {
+            Solver<string, string>* s = new StringReverser();
+            CacheManager<string>* cache = new FileCacheManager<string>(5);
+            ClientHandler *c = new MyTestClientHandler<string>(s, cache);
             server_side::Server *server1 = new MySerialServer();
-            server1->open(port, *c);
+            server1->open(port, c);
         }
     };
 }

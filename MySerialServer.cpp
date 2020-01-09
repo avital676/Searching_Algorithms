@@ -5,7 +5,7 @@
 #include "MySerialServer.h"
 //template <typename T>
 
-void MySerialServer::start(int socketfd, sockaddr_in address, ClientHandler c) {
+void MySerialServer::start(int socketfd, sockaddr_in address, ClientHandler* c) {
     while (!toStop) {
         // accept a client:
         int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
@@ -13,7 +13,8 @@ void MySerialServer::start(int socketfd, sockaddr_in address, ClientHandler c) {
             cout << "error accepting client"
                  << endl;  //// HERE SHOULD BE TIMEOUT. if timeout- go to the while condition again
         }
-        //c.handleClient(client_socket);
+        c->handleClient(client_socket);
+
     }
 }
 
@@ -21,7 +22,7 @@ void MySerialServer::stop() {
     toStop = true;
 }
 
-int MySerialServer::open(int port, ClientHandler c) {
+int MySerialServer::open(int port, ClientHandler* c) {
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if (socketfd == -1) {
         //error

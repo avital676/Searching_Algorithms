@@ -4,7 +4,7 @@
 
 #include "MyTestClientHandler.h"
 template<typename T>
-MyTestClientHandler<T>::MyTestClientHandler(Solver<string, string> solver1, CacheManager<T> cache1) {
+MyTestClientHandler<T>::MyTestClientHandler(Solver<string, string>* solver1, CacheManager<T>* cache1) {
     solver = solver1;
     cache = cache1;
 }
@@ -18,10 +18,10 @@ void MyTestClientHandler<T>::handleClient(int client_socket) {
     line = strtok(buffer, "\n");
     while (line != "") {
         //not exist.
-        const void *solution = cache.get(line);
+        const void *solution = cache->get(line);
         if (solution == NULL) {
             //solve the problem and save it in the cache.
-            string solution = solver.solve(line);
+            string solution = solver->solve(line);
             cache.insert(line, solution);
         }
         //return solution

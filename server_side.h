@@ -7,13 +7,14 @@
 
 #include "ClientHandler.h"
 
+
 namespace server_side {
     class Server {
     protected:
         bool toStop = false;
     public:
         virtual void stop() = 0;
-        virtual int open(int port, ClientHandler c) = 0;
+        virtual int open(int port, ClientHandler* c) = 0;
         //virtual void start(int client_socket, ClientHandler c);
     };
 

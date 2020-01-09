@@ -12,8 +12,7 @@ using namespace std;
 //template<typename T>
 class ClientHandler {
 public:
-    virtual void handleClient(int client_socket);
-    //virtual ClientHandler(Solver<string, string> solver1, CacheManager<T> cache1);
+    virtual void handleClient(int client_socket) = 0;
 };
 
 #endif //EX4_CLIENTHANDLER_H

@@ -11,8 +11,8 @@ using namespace std;
 template <typename T>
 class CacheManager {
 public:
-    virtual void insert(string key, T obj);
-    virtual T get(string key);
+    virtual void insert(string key, T obj) = 0;
+    virtual T get(string key) = 0;
 };
 
 
