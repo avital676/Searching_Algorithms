@@ -21,4 +21,5 @@ public:
     void insert(string key, string obj);
     string get(string key);
     void foreach(const function<void(string &)> func);
+    bool isInCache(string key);
     };

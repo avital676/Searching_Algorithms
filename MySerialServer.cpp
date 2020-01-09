@@ -42,9 +42,9 @@ int MySerialServer::open(int port, ClientHandler* c) {
         return -3;
     }
     // activate thread:
-    //MySerialServer *s = new MySerialServer();
-    //thread readThread;
-    //readThread = thread(&MySerialServer::start, socketfd, address, c);
+    MySerialServer *s = new MySerialServer();
+    thread readThread(&MySerialServer::start, s, socketfd, address, c);
+    readThread.join();
     close(socketfd);
 
     return 0;

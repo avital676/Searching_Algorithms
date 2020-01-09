@@ -45,12 +45,18 @@
             updateCache(key, val);
         } else {
             file.close();
-            // not in file, throw exception:
-            return NULL;
+            // not in file
         }
         file.close();
         return val;
     }
+
+bool FileCacheManager::isInCache(string key) {
+    if (keyValMap.find(key) != keyValMap.end()) {
+        return true;
+    }
+    return false;
+}
 
     void FileCacheManager::foreach(const function<void(string &)> func) {
         for (string t : keys) {

@@ -13,6 +13,7 @@ class CacheManager {
 public:
     virtual void insert(string key, T obj) = 0;
     virtual T get(string key) = 0;
+    virtual bool isInCache(string key)=0;
 };
 
 

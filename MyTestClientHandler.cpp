@@ -9,28 +9,30 @@ MyTestClientHandler::MyTestClientHandler(Solver<string, string>* solver1, CacheM
     cache = cache1;
 }
 void MyTestClientHandler::handleClient(int client_socket) {
-    string line;
+    char *line;
     char buffer[1024] = {0};
     int valread;
     valread = read(client_socket, buffer, 1024);
     // find solution for each line
     line = strtok(buffer, "\n");
-    while (line != "") {
-        //not exist.
-        string solution = cache->get(line);
-        if (solution == "") {
+    string solution;
+    while (line != NULL) {
+        //exist.
+        if (cache->isInCache(line)) {
+            solution = cache->get(line);
+        } else {
             //solve the problem and save it in the cache.
-            string solution = solver->solve(line);
+            solution = solver->solve(line);
             cache->insert(line, solution);
         }
         //return solution
-        const char * a;
-        std::strcpy (const_cast<char *>(a), solution.c_str());
+        const char * a = solution.c_str();
         int is_sent;
-        is_sent= send(client_socket, a, sizeof(a), 0);
+        is_sent= send(client_socket, a, sizeof(solution), 0);
         if (is_sent == -1) {
             cerr << "error sending message" << endl;
 
         }
+        line = strtok(NULL, "\n");
     }
 }
