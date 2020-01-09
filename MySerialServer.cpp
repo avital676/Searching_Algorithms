@@ -17,7 +17,7 @@ public:
             // accept a client:
             int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
             if (client_socket == -1) {
-
+                cout << "error accepting client" << endl;  //// HERE SHOULD BE TIMEOUT. if timeout- go to the while condition again
             }
             c.handleClient(client_socket);
         }
