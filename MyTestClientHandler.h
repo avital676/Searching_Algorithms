@@ -1,7 +1,6 @@
 #include <sys/socket.h>
 #include <iostream>
 #include <unistd.h>
-#include "Solver.h"
 #include "ClientHandler.h"
 #include "CacheManager.h"
 #include <string.h>

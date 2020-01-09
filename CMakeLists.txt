@@ -2,5 +2,5 @@ cmake_minimum_required(VERSION 3.15)
 project(ex4)
 
 set(CMAKE_CXX_STANDARD 14)
-
-add_executable(ex4 main.cpp StringReverser.cpp Solver.h MyTestClientHandler.cpp MySerialServer.cpp FileCacheManager.cpp server_side.cpp CacheManager.h ClientHandler.h)
+set(CMAKE_CXX_FLAGS -pthread)
+add_executable(ex4 CacheManager.h ClientHandler.h FileCacheManager.cpp main.cpp MySerialServer.cpp MyTestClientHandler.cpp server_side.h Solver.h StringReverser.cpp boot.h)

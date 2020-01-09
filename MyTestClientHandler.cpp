@@ -18,11 +18,11 @@ void MyTestClientHandler<T>::handleClient(int client_socket) {
     line = strtok(buffer, "\n");
     while (line != "") {
         //not exist.
-        const void *solution = cache->get(line);
+        const void *solution = cache.get(line);
         if (solution == NULL) {
             //solve the problem and save it in the cache.
             string solution = solver->solve(line);
-            cache->insert(line, solution);
+            cache.insert(line, solution);
         }
         //return solution
         int is_sent = send(client_socket, solution, sizeof(solution), 0);

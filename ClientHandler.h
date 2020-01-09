@@ -13,6 +13,7 @@ using namespace std;
 class ClientHandler {
 public:
     virtual void handleClient(int client_socket) = 0;
+    //virtual ClientHandler(Solver<string, string> solver1, CacheManager<T> cache1);
 };
 
 #endif //EX4_CLIENTHANDLER_H
