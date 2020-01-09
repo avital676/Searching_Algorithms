@@ -17,6 +17,9 @@ void MyTestClientHandler::handleClient(int client_socket) {
     line = strtok(buffer, "\n");
     string solution;
     while (line != NULL) {
+        if (strcmp(line, "end") == 0) {
+            return;
+        }
         //exist.
         if (cache->isInCache(line)) {
             solution = cache->get(line);
