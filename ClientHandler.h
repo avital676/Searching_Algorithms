@@ -6,6 +6,7 @@
 #define EX4_CLIENTHANDLER_H
 
 #include <iostream>
+using namespace std;
 
 class ClientHandler {
 public:
