@@ -6,6 +6,7 @@
 #include <thread>
 #include "server_side.h"
 
+
 class MySerialServer : public server_side::Server {
 public:
     void start(int socketfd, sockaddr_in address, ClientHandler* c);
