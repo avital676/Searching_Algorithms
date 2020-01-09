@@ -4,6 +4,11 @@
 
 #include "server_side.h"
 #include "MySerialServer.h"
+#include "StringReverser.h"
+#include "CacheManager.h"
+#include "MyTestClientHandler.h"
+#include "FileCacheManager.h"
+
 namespace boot {
     class Main {
         void main(char* args) {

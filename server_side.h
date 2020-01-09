@@ -6,24 +6,16 @@
 #define EX4_SERVER_SIDE_H
 
 #include "ClientHandler.h"
-#include "Solver.h"
-#include "StringReverser.h"
-#include "MyTestClientHandler.h"
-#include "FileCacheManager.h"
 
 namespace server_side {
-    //template <typename T>
     class Server {
     protected:
         bool toStop = false;
     public:
-        virtual void stop();
-        virtual int open(int port, ClientHandler c);
+        virtual void stop() = 0;
+        virtual int open(int port, ClientHandler c) = 0;
         //virtual void start(int client_socket, ClientHandler c);
     };
-
-
-
 
 }
 

@@ -1,3 +1,4 @@
+
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <iostream>
@@ -5,6 +6,7 @@
 #include <thread>
 #include "ClientHandler.h"
 #include "server_side.h"
+
 class MySerialServer : public server_side::Server {
 public:
     void start(int socketfd, sockaddr_in address, ClientHandler c);
