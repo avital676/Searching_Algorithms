@@ -10,12 +10,12 @@
 #include <string.h>
 
 template<typename T>
-class MyTestClientHandler : ClientHandler {
+class MyTestClientHandler :public ClientHandler {
 public:
     Solver<string, string> solver;
     CacheManager<T> cache;
 
-    void ClientHandler(Solver<string, string> solver1, CacheManager<T> cache1) {
+    MyTestClientHandler (Solver<string, string> solver1, CacheManager<T> cache1) {
         solver = solver1;
         cache = cache1;
     }

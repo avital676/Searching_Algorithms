@@ -8,9 +8,12 @@
 #include "ClientHandler.h"
 #include "Solver.h"
 #include "StringReverser.h"
+#include "MyTestClientHandler.cpp"
+#include "FileCacheManager.cpp"
+//#include "MySerialServer.h"
 
 namespace server_side {
-
+    //template <typename T>
     class Server {
     protected:
         bool toStop = false;
@@ -20,16 +23,6 @@ namespace server_side {
         //virtual void start(int client_socket, ClientHandler c);
     };
 
-    namespace boot {
-        class Main {
-            void main(char* args) {
-                int port = args[0];
-                Solver<string, string>* so = new StringReverser();
-                StringReverser* s = new StringReverser();
-                ClientHandler* c = new ClientHandler();
-            }
-        };
-    }
 
 
 

@@ -14,7 +14,7 @@
 using namespace std;
 
 template <typename T>
-class FileCacheManager : CacheManager<T> {
+class FileCacheManager : public CacheManager<T> {
 private:
     unsigned int size;
     list<string> keys;

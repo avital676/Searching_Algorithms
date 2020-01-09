@@ -2,17 +2,10 @@
 // Created by avital on 09/01/2020.
 //
 
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <iostream>
-#include <unistd.h>
-#include <thread>
-#include "ClientHandler.h"
-#include "server_side.h"
+#include "MySerialServer.h"
+//template <typename T>
 
-class MySerialServer : public server_side::Server {
-public:
-    void start(int socketfd, sockaddr_in address, ClientHandler c) {
+    void MySerialServer::start(int socketfd, sockaddr_in address, ClientHandler c) {
         while (!toStop) {
             // accept a client:
             int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
@@ -23,11 +16,11 @@ public:
         }
     }
 
-    void stop() {
+    void MySerialServer::stop() {
         toStop = true;
     }
 
-    int open(int port, ClientHandler c) {
+    int MySerialServer::open(int port, ClientHandler c) {
         int socketfd = socket(AF_INET, SOCK_STREAM, 0);
         if (socketfd == -1) {
             //error
@@ -55,4 +48,3 @@ public:
 
         return 0;
     }
-};
