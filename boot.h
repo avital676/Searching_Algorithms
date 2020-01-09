@@ -18,7 +18,7 @@ namespace boot {
             Solver<string, string>* sol = new StringReverser();
             CacheManager<string>* c = new FileCacheManager(5);
             server_side::Server* ser = new MySerialServer();
-            ClientHandler* cli = new MyTestClientHandler<string>(sol, c);
+            ClientHandler* cli = new MyTestClientHandler(sol, c);
             ser->open(port, cli);
         }
     };

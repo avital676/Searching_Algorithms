@@ -3,13 +3,11 @@
 //
 
 #include "MyTestClientHandler.h"
-template<typename T>
-MyTestClientHandler<T>::MyTestClientHandler(Solver<string, string>* solver1, CacheManager<T>* cache1) {
+MyTestClientHandler::MyTestClientHandler(Solver<string, string>* solver1, CacheManager<string>* cache1) {
     solver = solver1;
     cache = cache1;
 }
-template<typename T>
-void MyTestClientHandler<T>::handleClient(int client_socket) {
+void MyTestClientHandler::handleClient(int client_socket) {
     string line;
     char buffer[1024] = {0};
     int valread;
@@ -18,17 +16,17 @@ void MyTestClientHandler<T>::handleClient(int client_socket) {
     line = strtok(buffer, "\n");
     while (line != "") {
         //not exist.
-        const void *solution = cache.get(line);
-        if (solution == NULL) {
+        string solution = cache->get(line);
+        if (solution == "") {
             //solve the problem and save it in the cache.
             string solution = solver->solve(line);
-            cache.insert(line, solution);
+            cache->insert(line, solution);
         }
         //return solution
-        int is_sent = send(client_socket, solution, sizeof(solution), 0);
-        if (is_sent == -1) {
-            cerr << "error sending message" << endl;
+       // int is_sent = send(client_socket, solution, solution.length(), 0);
+       // if (is_sent == -1) {
+       //     cerr << "error sending message" << endl;
 
-        }
+      //  }
     }
 }
