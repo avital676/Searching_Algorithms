@@ -1,30 +1,10 @@
-//
-// Created by avital on 09/01/2020.
-//
-
-#include "CacheManager.h"
-#include <functional>
-#include <string>
-#include <list>
-#include <unordered_map>
-#include <iostream>
-#include <fstream>
-#include <exception>
-
-using namespace std;
-
+#include "FileCacheManager.h"
 template <typename T>
-class FileCacheManager : public CacheManager<T> {
-private:
-    unsigned int size;
-    list<string> keys;
-    unordered_map<string, pair<T, typename list<string>::iterator>> keyValMap;
-public:
-    FileCacheManager(int capacity) {
+    FileCacheManager<T>::FileCacheManager(int capacity) {
         size = capacity;
     }
-
-    void updateCache(string key, T obj) {
+template <typename T>
+    void FileCacheManager<T>::updateCache(string key, T obj) {
         // check if already in cache:
         if (keyValMap.find(key) != keyValMap.end()) {
             keyValMap.erase(key);
@@ -38,8 +18,8 @@ public:
         keys.push_front(key);
         keyValMap[key] = {obj, keys.begin()};
     }
-
-    void insert(string key, T obj) {
+template <typename T>
+    void FileCacheManager<T>::insert(string key, T obj) {
         // insert to cache:
         updateCache(key, obj);
         // insert to filesystem:
@@ -51,8 +31,8 @@ public:
         file.write((char *) &obj, sizeof(obj));
         file.close();
     }
-
-    T get(string key) {
+template <typename T>
+    T FileCacheManager<T>:: get(string key) {
         T val;
         fstream file(val.class_name + key, ios::in | ios::binary);
         // key exists in cache:
@@ -72,10 +52,10 @@ public:
         file.close();
         return val;
     }
-
-    void foreach(const function<void(T &)> func) {
+template <typename T>
+    void FileCacheManager<T>::foreach(const function<void(T &)> func) {
         for (string t : keys) {
             func(keyValMap[t].first);
         }
     }
-};
+

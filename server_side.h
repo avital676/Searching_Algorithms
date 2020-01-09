@@ -8,9 +8,8 @@
 #include "ClientHandler.h"
 #include "Solver.h"
 #include "StringReverser.h"
-#include "MyTestClientHandler.cpp"
-#include "FileCacheManager.cpp"
-//#include "MySerialServer.h"
+#include "MyTestClientHandler.h"
+#include "FileCacheManager.h"
 
 namespace server_side {
     //template <typename T>

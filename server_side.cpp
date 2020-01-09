@@ -1,14 +1,9 @@
 //
 // Created by avital on 09/01/2020.
 //
-#include "ClientHandler.h"
-#include "Solver.h"
-#include "StringReverser.h"
-#include "MyTestClientHandler.cpp"
-#include "FileCacheManager.cpp"
+
 #include "server_side.h"
 #include "MySerialServer.h"
-
 namespace boot {
     class Main {
         void main(char* args) {

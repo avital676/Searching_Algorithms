@@ -43,7 +43,7 @@
         }
         // activate thread:
         MySerialServer *s = new MySerialServer();
-        thread readThread = thread(&MySerialServer::start, socketfd, address, c);
+      //  thread readThread = thread(&MySerialServer::start, socketfd, address, c);
         //close(socketfd);
 
         return 0;
