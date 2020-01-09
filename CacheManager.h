@@ -5,10 +5,14 @@
 #ifndef EX4_CACHEMANAGER_H
 #define EX4_CACHEMANAGER_H
 
+#include <string>
+using namespace std;
 
+template <typename T>
 class CacheManager {
 public:
-
+    virtual void insert(string key, T obj);
+    virtual T get(string key);
 };
 
 

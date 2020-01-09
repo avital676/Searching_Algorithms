@@ -3,4 +3,4 @@ project(ex4)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(ex4 main.cpp noa.cpp noa.h StringReverser.cpp StringReverser.h Solver.cpp Solver.h MyTestClientHandler.cpp MySerialServer.cpp FileCacheManager.cpp)
+add_executable(ex4 main.cpp StringReverser.cpp StringReverser.h Solver.cpp Solver.h MyTestClientHandler.cpp MySerialServer.cpp FileCacheManager.cpp)
