@@ -22,7 +22,7 @@ void MyTestClientHandler<T>::handleClient(int client_socket) {
         if (solution == NULL) {
             //solve the problem and save it in the cache.
             string solution = solver->solve(line);
-            cache.insert(line, solution);
+            cache->insert(line, solution);
         }
         //return solution
         int is_sent = send(client_socket, solution, sizeof(solution), 0);
