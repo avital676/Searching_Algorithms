@@ -5,9 +5,8 @@
 #include <cstring>
 #include <vector>
 #include "MyClientHandler.h"
-#include "Isearchable.h"
 
-MyClientHandler::MyClientHandler(Solver<Matrix, string> *solver1, CacheManager<string> *cache1) {
+MyClientHandler::MyClientHandler(Solver<Isearchable<Point*>, string> *solver1, CacheManager<string> *cache1) {
     solver = solver1;
     cache = cache1;
 }
@@ -25,7 +24,7 @@ void MyClientHandler::handleClient(int client_socket) {
         if (row == "end") {
             break;
         }
-        strMatrix += row;
+        strMatrix += row += "\n";
         matrixVec.push_back(row);
     }
     if (cache->isInCache(strMatrix)) {
@@ -33,7 +32,7 @@ void MyClientHandler::handleClient(int client_socket) {
     } else {
         Isearchable<Point*> *matrix = new Matrix(matrixVec);
         //solve the problem and save in the cache:
-        solution = solver->solve(matrix);
+        solution = solver->solve(*matrix);
         cache->insert(strMatrix, solution);
     }
     // return solution to client:

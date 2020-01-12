@@ -12,10 +12,11 @@
 #include <sys/socket.h>
 #include <iostream>
 #include <unistd.h>
+
 class MyClientHandler : public ClientHandler {
-    Solver <Matrix, string>* solver;
+    Solver <Isearchable<Point*>, string>* solver;
     CacheManager <string>* cache;
-    MyClientHandler(Solver <Matrix, string>* solver1, CacheManager <string>* cache1);
+    MyClientHandler(Solver <Isearchable<Point*>, string>* solver1, CacheManager <string>* cache1);
     void handleClient(int client_socket);
 };
 

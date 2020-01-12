@@ -11,12 +11,13 @@
 #include "Isearchable.h"
 
 using namespace std;
-class Matrix: public Isearchable<Point*> {
+class Matrix : public Isearchable<Point*> {
 private:
     vector<vector<state<Point*>*>> matrix;
     state<Point*>* start;
     state<Point*>* end;
 public:
+    Matrix();
     Matrix(vector<string> s);
     state<Point*>* createStateFromString(string s);
     state<Point*>* getInitialState();
