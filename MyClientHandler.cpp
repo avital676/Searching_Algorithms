@@ -7,7 +7,7 @@
 #include "MyClientHandler.h"
 #include "Isearchable.h"
 
-MyClientHandler::MyClientHandler(Solver<string, string> *solver1, CacheManager<string> *cache1) {
+MyClientHandler::MyClientHandler(Solver<Matrix, string> *solver1, CacheManager<string> *cache1) {
     solver = solver1;
     cache = cache1;
 }
@@ -31,7 +31,7 @@ void MyClientHandler::handleClient(int client_socket) {
     if (cache->isInCache(strMatrix)) {
         solution = cache->get(strMatrix);
     } else {
-        Isearchable<T> matrix = new Matrix(strMatrix);
+        Isearchable<Point*> *matrix = new Matrix(matrixVec);
         //solve the problem and save in the cache:
         solution = solver->solve(matrix);
         cache->insert(strMatrix, solution);

@@ -36,6 +36,7 @@ Matrix::Matrix(vector<string> s) {
      end = createStateFromString(s[s.size()]);
 
 }
+
 state<Point*>* Matrix::createStateFromString(string s){
     string x="";
     string y="";
@@ -53,12 +54,15 @@ state<Point*>* Matrix::createStateFromString(string s){
     int Iy = stoi(y);
     return matrix[Ix][Iy];
 }
+
 state<Point*>* Matrix::getInitialState(){
     return start;
 }
+
 bool Matrix::isGoalStateSate(state<Point*> s){
     return (s.equals(*end));
 }
+
 vector<state<Point*>*> Matrix::getAllPossibleState(state<Point*> s){
     vector<state<Point*> *> states;
     int x =s.getMyState()->x;
