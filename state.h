@@ -13,12 +13,27 @@ private:
     double cost;
     state<T> *cameFrom;
 public:
-    state(T state, double cost);
-    bool equals(state<T> s);
-    double getCost();
-    state<T>* getCameFrom();
-    void setCameFrom(state<T> *s);
-    T getMyState();
+    state(T state, double cost){
+        cost = cost;
+        Mystate = state;
+        cameFrom = nullptr;
+    }
+    bool equals(state<T> s){
+        return Mystate.equals(s.getMyState());
+
+    }
+    double getCost(){
+        return cost;
+    }
+    state<T>* getCameFrom(){
+        return cameFrom;
+    }
+    void setCameFrom(state<T> *s){
+        this->cameFrom = s;
+    }
+    T getMyState(){
+        return Mystate;
+    }
 
 };
 

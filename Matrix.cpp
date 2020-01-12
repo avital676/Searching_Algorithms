@@ -10,7 +10,7 @@ Matrix::Matrix(vector<string> s) {
     vector<state<Point*> *> row;
     vector<vector<state<Point*>*>> matrix;
 
-    int num;
+    double num;
     string word = "";
     for (int i = 0; i < s.size() - 1; i++) {
         for (int j = 0; j < s[i].length(); i++) {
@@ -19,8 +19,8 @@ Matrix::Matrix(vector<string> s) {
             } else if (s[i][j] == ',') {
                 num = stoi(word);
                 Point *p = new Point(i, j);
-                state<Point*> *s = new state<Point*>(p,num);
-                row[countRow] = s;
+                state<Point*> *s1 = new state<Point*>(p,num);
+                row[countRow] = s1;
                 word = "";
             } else {
                 word += s[i];
