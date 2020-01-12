@@ -8,7 +8,7 @@
 
 #include "ClientHandler.h"
 #include "CacheManager.h"
-#include "Matrix.h"
+#include "Isearchable.h"
 #include <sys/socket.h>
 #include <iostream>
 #include <unistd.h>

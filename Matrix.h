@@ -8,10 +8,10 @@
 #include <vector>
 #include "state.h"
 #include <string>
-#include "Isearchable.h"
+#include "Searchable.h"
 
 using namespace std;
-class Matrix : public Isearchable<Point*> {
+class Matrix : public Searchable {
 private:
     vector<vector<state<Point*>*>> matrix;
     state<Point*>* start;
