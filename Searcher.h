@@ -9,8 +9,8 @@
 #include "ISearcher.h"
 #include "Isearchable.h"
 
-class Searcher : public ISearcher {
-    virtual string search(Isearchable problem) = 0;
+class Searcher : public ISearcher<T> {
+    virtual string search(Isearchable<T> problem) = 0;
 };
 
 
