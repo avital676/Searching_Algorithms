@@ -4,12 +4,11 @@
 
 #include "Matrix.h"
 
-template<typename T>
-Matrix<T>::Matrix(vector<string> s) {
+Matrix::Matrix(vector<string> s) {
     int countRow = 0;
     int countMatrix = 0;
-    vector<state<int> *> row;
-    vector<vector<state<int> *>> matrix;
+    vector<state<Point*> *> row;
+    vector<vector<state<Point*>*>> matrix;
 
     int num;
     string word = "";
@@ -19,26 +18,25 @@ Matrix<T>::Matrix(vector<string> s) {
                 j++;
             } else if (s[i][j] == ',') {
                 num = stoi(word);
-                state<int> *s = new state<int>(num);
+                Point *p = new Point(i, j);
+                state<Point*> *s = new state<Point*>(p,num);
                 row[countRow] = s;
                 word = "";
             } else {
                 word += s[i];
             }
         }
-        matrix[countMatrix] = row;
-        vector<state<int> *> row;
+        matrix.push_back(row);
+        vector<state<Point*> *> row;
         countRow = 0;
         word = "";
     }
     this->matrix = matrix;
-    string start = createStateFromString(s[s.size()-1]);
-    string end = createStateFromString(s[s.size()]));
-    this->start=start;
-    this->end=end;
+     start = createStateFromString(s[s.size()-1]);
+     end = createStateFromString(s[s.size()]);
+
 }
-template<typename T>
-state<T> Matrix<T>::createStateFromString(string s){
+state<Point*>* Matrix::createStateFromString(string s){
     string x="";
     string y="";
     for (int i=0; i<s.length(); i++){
@@ -54,6 +52,22 @@ state<T> Matrix<T>::createStateFromString(string s){
     int Ix = stoi(x);
     int Iy = stoi(y);
     return matrix[Ix][Iy];
+}
+state<Point*>* Matrix::getInitialState(){
+    return start;
+}
+bool Matrix::isGoalStateSate(state<Point*> s){
+    return (s.equals(*end));
+}
+vector<state<Point*>*> Matrix::getAllPossibleState(state<Point*> s){
+    vector<state<Point*> *> states;
+    int x =s.getMyState()->x;
+    int y = s.getMyState()->y;
+    states.push_back(matrix[x-1][y]);
+    states.push_back(matrix[x][y+1]);
+    states.push_back(matrix[x+1][y]);
+    states.push_back(matrix[x][y-1]);
+    return states;
 }
 
 

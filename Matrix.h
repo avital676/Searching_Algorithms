@@ -8,17 +8,20 @@
 #include <vector>
 #include "state.h"
 #include <string>
+#include "Isearchable.h"
 
 using namespace std;
-template<typename T>
-class Matrix {
+class Matrix: public Isearchable<Point*> {
 private:
-    vector<vector<state<T>*>> matrix;
-    state<T> start;
-    state<T> end;
+    vector<vector<state<Point*>*>> matrix;
+    state<Point*>* start;
+    state<Point*>* end;
 public:
     Matrix(vector<string> s);
-    state<T> createStateFromString(string s);
+    state<Point*>* createStateFromString(string s);
+    state<Point*>* getInitialState();
+    bool isGoalStateSate(state<Point*> s);
+    vector<state<Point*>*> getAllPossibleState(state<Point*> s);
 };
 
 

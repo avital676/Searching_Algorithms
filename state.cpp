@@ -5,7 +5,8 @@
 #include "state.h"
 
 template<typename T>
-state<T>::state(T state) {
+state<T>::state(T state, double cost) {
+    cost = cost;
     Mystate = state;
     cameFrom = nullptr;
 }
@@ -30,6 +31,11 @@ template<typename T>
 void state<T>::setCameFrom(state<T> *s) {
     this->cameFrom = s;
 }
+template<typename T>
+T state<T>::getMyState(){
+    return Mystate;
+}
+
 
 
 
