@@ -9,14 +9,7 @@
 #include "Isearchable.h"
 
 class Searchable : public Isearchable<Point*>{
-public:
-    state<Point*>* getInitialState() {
-        return nullptr;
-    }
-    bool isGoalStateSate(state<Point*> s) {
-        return true;
-    }
-    virtual vector<state<Point*>*> getAllPossibleState(state<Point*> s) = 0;
+
 };
 
 

@@ -14,5 +14,4 @@ public:
 };
 
 
-
 #endif //EX4_SOLVER_H

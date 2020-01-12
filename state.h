@@ -19,7 +19,7 @@ public:
         cameFrom = nullptr;
     }
     bool equals(state<T> s){
-        return Mystate.equals(s.getMyState());
+        return Mystate->equals(s.getMyState());
 
     }
     double getCost(){
