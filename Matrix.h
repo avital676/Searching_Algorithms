@@ -17,7 +17,8 @@ private:
     state<T> start;
     state<T> end;
 public:
-    Matrix(string s);
+    Matrix(vector<string> s);
+    state<T> createStateFromString(string s);
 };
 
 
