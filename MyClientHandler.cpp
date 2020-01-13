@@ -14,13 +14,12 @@ MyClientHandler::MyClientHandler(Solver<Isearchable<Point*>*, string> *solver1, 
 
 void MyClientHandler::handleClient(int client_socket) {
     string solution;
-    char buffer[1024] = {0};
+    char buffer[4096] = {0};
     string row;
     vector<string> matrixVec;
-    int valread;
+    int valread = read(client_socket, buffer, 4096);;
     string strMatrix = "";
     while (true) {
-        valread = read(client_socket, buffer, 1024);
         row = strtok(buffer, "\n");
         if (row == "end") {
             break;
