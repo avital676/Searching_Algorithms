@@ -7,7 +7,7 @@
 #include "MyClientHandler.h"
 #include "Matrix.h"
 
-MyClientHandler::MyClientHandler(Solver<Isearchable<Point*>, string> *solver1, CacheManager<string> *cache1) {
+MyClientHandler::MyClientHandler(Solver<Isearchable<Point*>*, string> *solver1, CacheManager<string> *cache1) {
     solver = solver1;
     cache = cache1;
 }

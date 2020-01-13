@@ -14,9 +14,9 @@
 #include <unistd.h>
 
 class MyClientHandler : public ClientHandler {
-    Solver <Isearchable<Point*>, string>* solver;
+    Solver <Isearchable<Point*>*, string>* solver;
     CacheManager <string>* cache;
-    MyClientHandler(Solver <Isearchable<Point*>, string>* solver1, CacheManager <string>* cache1);
+    MyClientHandler(Solver <Isearchable<Point*>*, string>* solver1, CacheManager <string>* cache1);
     void handleClient(int client_socket);
 };
 

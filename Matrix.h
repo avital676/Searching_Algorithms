@@ -11,7 +11,7 @@
 #include "Searchable.h"
 
 using namespace std;
-class Matrix : public Searchable {
+class Matrix : public Isearchable<Point*> {
 private:
     vector<vector<state<Point*>*>> matrix;
     state<Point*>* start;
