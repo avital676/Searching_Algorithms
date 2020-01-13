@@ -18,18 +18,12 @@ namespace boot {
     class Main {
     public:
         void main(int port) {
-            Solver<string, string>* sol = new StringReverser();
+            ISearcher<Point*> *i = new check<Point*>();
+            Solver<Isearchable<Point*>*, string>* sol = new SerachSolver<Point*>(i);
             CacheManager<string>* c = new FileCacheManager(5);
             server_side::Server* ser = new MySerialServer();
-            ClientHandler* cli = new MyTestClientHandler(sol, c);
+            ClientHandler* cli = new MyClientHandler(sol, c);
             ser->open(port, cli);
-
-//            ISearcher<Point*> *i = new check<Point*>();
-//            Solver<Isearchable<Point*>*, string>* sol = new SerachSolver<Point*>(i);
-//            CacheManager<string>* c = new FileCacheManager(5);
-//            server_side::Server* ser = new MySerialServer();
-//            ClientHandler* cli = new MyClientHandler(sol, c);
-//            ser->open(port, cli);
         }
     };
 }

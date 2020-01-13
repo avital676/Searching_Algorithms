@@ -6,7 +6,7 @@
 
 int main () {
     boot::Main* m = new boot::Main();
-    m->main(12345);
+    m->main(12347);
 
     return 0;
 }

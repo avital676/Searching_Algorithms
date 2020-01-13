@@ -31,7 +31,7 @@ void MyTestClientHandler::handleClient(int client_socket) {
         //return solution
         const char * a = solution.c_str();
         int is_sent;
-        is_sent= send(client_socket, a, sizeof(solution), 0);
+        is_sent= send(client_socket, a, strlen(a), 0);
         if (is_sent == -1) {
             cerr << "error sending message" << endl;
         }
