@@ -21,6 +21,7 @@ public:
     Matrix(vector<string> s);
     state<Point*>* createStateFromString(string s);
     state<Point*>* getInitialState();
+    state<Point*>* getGoalState();
     bool isGoalStateSate(state<Point*>* s);
     vector<state<Point*>*>* getAllPossibleState(state<Point*>* s);
 };

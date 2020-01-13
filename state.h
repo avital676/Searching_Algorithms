@@ -13,6 +13,7 @@ private:
     double cost;
     state<T> *cameFrom;
 public:
+    double sum;
     state(T state, double cost1){
         cost = cost1;
         Mystate = state;

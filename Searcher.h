@@ -8,9 +8,39 @@
 
 #include "ISearcher.h"
 #include "Isearchable.h"
+#include <queue>
 template <typename T>
 class Searcher : public ISearcher<T> {
-    virtual string search(Isearchable<T>* problem) = 0;
+private:
+    priority_queue<state<Point*>> openQ;
+    int evaluateNode = 0;
+protected:
+    state<Point*>* popOpenQ() {
+        evaluateNode++; /// MAYBE COST
+        state<Point*>* s = openQ.top();
+        openQ.pop();
+        return s;
+    }
+    void addToOpenQ(state<Point*>* s) {
+        openQ.push(s);
+    }
+    string backTrace(Isearchable<Point*> *problem) {
+        state<Point*>* son = problem->getGoalState();
+        state<Point*>* father = son->getCameFrom();
+        while (father != NULL) {
+
+            son = father;
+            father = son->getCameFrom();
+        }
+    }
+public:
+    //virtual string search(Isearchable<T>* problem) = 0;
+    int openQsize() {
+        return openQ.size();
+    }
+    int getNumOfNodesEvaluated() {
+        return evaluateNode;
+    }
 };
 
 

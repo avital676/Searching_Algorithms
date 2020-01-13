@@ -54,29 +54,33 @@ state<Point *> *Matrix::createStateFromString(string s) {
             temp += s[i];
         }
     }
-        y = temp;
-        int Ix = stoi(x);
-        int Iy = stoi(y);
-        return matrix[Ix][Iy];
-    }
+    y = temp;
+    int Ix = stoi(x);
+    int Iy = stoi(y);
+    return matrix[Ix][Iy];
+}
 
-    state<Point *> *Matrix::getInitialState() {
-        return start;
-    }
+state<Point *> *Matrix::getInitialState() {
+    return start;
+}
 
-    bool Matrix::isGoalStateSate(state<Point *> *s) {
-        return (s->equals(*end));
-    }
+bool Matrix::isGoalStateSate(state<Point *> *s) {
+    return (s->equals(*end));
+}
 
-    vector<state<Point *> *> *Matrix::getAllPossibleState(state<Point *> *s) {
-        vector<state<Point *> *> *states;
-        int x = s->getMyState()->x;
-        int y = s->getMyState()->y;
-        states->push_back(matrix[x - 1][y]);
-        states->push_back(matrix[x][y + 1]);
-        states->push_back(matrix[x + 1][y]);
-        states->push_back(matrix[x][y - 1]);
-        return states;
-    }
+state<Point *> *Matrix::getGoalState() {
+    return end;
+}
+
+vector<state<Point *> *> *Matrix::getAllPossibleState(state<Point *> *s) {
+    vector<state<Point *> *> *states;
+    int x = s->getMyState()->x;
+    int y = s->getMyState()->y;
+    states->push_back(matrix[x - 1][y]);
+    states->push_back(matrix[x][y + 1]);
+    states->push_back(matrix[x + 1][y]);
+    states->push_back(matrix[x][y - 1]);
+    return states;
+}
 
 
