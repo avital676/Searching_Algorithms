@@ -13,8 +13,8 @@ private:
     double cost;
     state<T> *cameFrom;
 public:
-    state(T state, double cost){
-        cost = cost;
+    state(T state, double cost1){
+        cost = cost1;
         Mystate = state;
         cameFrom = nullptr;
     }

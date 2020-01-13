@@ -7,7 +7,7 @@
 #include "MyClientHandler.h"
 #include "Matrix.h"
 
-MyClientHandler::MyClientHandler(Solver<Isearchable<Point*>*, string> *solver1, CacheManager<string> *cache1) {
+MyClientHandler::MyClientHandler(Solver<Isearchable<Point *> *, string> *solver1, CacheManager<string> *cache1) {
     solver = solver1;
     cache = cache1;
 }
@@ -15,28 +15,35 @@ MyClientHandler::MyClientHandler(Solver<Isearchable<Point*>*, string> *solver1, 
 void MyClientHandler::handleClient(int client_socket) {
     string solution;
     char buffer[1024] = {0};
-    char* row;
+    string row = "";
     vector<string> matrixVec;
-    int valread ;//= read(client_socket, buffer, 1024);
+    int valread;//= read(client_socket, buffer, 1024);
     string strMatrix = "";
-   // char* temp = buffer;
+    // char* temp = buffer;
     //row = strtok(temp, "\n");
-    while (read(client_socket, buffer, 1024)) {
-        row = strtok(buffer, "\n");
-        while (row!=NULL) {
-            if (strcmp(row, "end") == 0) {
+    bool doneReading = false;
+    while (!doneReading) {
+        valread = read(client_socket, buffer, 1024);
+        for (int i = 0; i < valread; i++) {
+            if (row == "end") {
+                doneReading = true;
                 break;
             }
-            strMatrix += row;
-            strMatrix += "\n";
-            matrixVec.push_back(row);
-            row = strtok(NULL, "\n");
+            if (buffer[i] == '\n') {
+                strMatrix += row;
+                strMatrix += "\n";
+                matrixVec.push_back(row);
+                row = "";
+            }else {
+                row += buffer[i];
+            }
         }
     }
+
     if (cache->isInCache(strMatrix)) {
         solution = cache->get(strMatrix);
     } else {
-        Isearchable<Point*> *matrix = new Matrix(matrixVec);
+        Isearchable<Point *> *matrix = new Matrix(matrixVec);
         //solve the problem and save in the cache:
         solution = solver->solve(matrix);
         cache->insert(strMatrix, solution);

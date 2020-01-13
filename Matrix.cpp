@@ -5,30 +5,33 @@
 #include "Matrix.h"
 
 Matrix::Matrix(vector<string> s) {
-    int countRow = 0;
+    int countCol = 0;
     int countMatrix = 0;
-    vector<state<Point *> *> row;
+    vector<state<Point *>*> row1;
+    vector<int> intim;
     vector<vector<state<Point *> *>> matrix;
 
     double num;
     string word = "";
     for (int i = 0; i < s.size() - 1; i++) {
-        for (int j = 0; j < s[i].length(); i++) {
+        for (int j = 0; j < s[i].length(); j++) {
             if (s[i][j] == ' ') {
                 j++;
             } else if (s[i][j] == ',') {
                 num = stoi(word);
-                Point *p = new Point(i, j);
+                Point *p = new Point(i, countCol);
                 state<Point *> *s1 = new state<Point *>(p, num);
-                row[countRow] = s1;
+                intim.push_back(3);
+                row1.push_back(s1);
+                countCol++;
                 word = "";
             } else {
-                word += s[i];
+                word += s[i][j];
             }
         }
-        matrix.push_back(row);
+        matrix.push_back(row1);
         vector<state<Point *> *> row;
-        countRow = 0;
+        countCol = 0;
         word = "";
     }
     this->matrix = matrix;
