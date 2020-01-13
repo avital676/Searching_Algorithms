@@ -8,7 +8,7 @@ Matrix::Matrix(vector<string> s) {
     int countRow = 0;
     int countMatrix = 0;
     vector<state<Point *> *> row;
-    vector<vector<state<Point *> *>>* matrix;
+    vector<vector<state<Point *> *>> matrix;
 
     double num;
     string word = "";
@@ -26,7 +26,7 @@ Matrix::Matrix(vector<string> s) {
                 word += s[i];
             }
         }
-        matrix->push_back(row);
+        matrix.push_back(row);
         vector<state<Point *> *> row;
         countRow = 0;
         word = "";

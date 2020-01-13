@@ -12,7 +12,7 @@
 
 // object adapter: solver and searcher
 template <typename T>
-class SerachSolver : public Solver<Isearchable<T>, string>{
+class SerachSolver : public Solver<Isearchable<T>*, string>{
 public:
     SerachSolver(ISearcher<T> *s) {
         iSeracher = s;
