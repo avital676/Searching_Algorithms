@@ -2,8 +2,8 @@
 // Created by avital on 12/01/2020.
 //
 
-#ifndef EX4_SERACHSOLVER_H
-#define EX4_SERACHSOLVER_H
+#ifndef EX4_SEARCHSOLVER_H
+#define EX4_SEARCHSOLVER_H
 
 #include <string>
 #include "Solver.h"
@@ -12,9 +12,9 @@
 
 // object adapter: solver and searcher
 template <typename T>
-class SerachSolver : public Solver<Isearchable<T>*, string>{
+class SearchSolver : public Solver<Isearchable<T>*, string>{
 public:
-    SerachSolver(ISearcher<T> *s) {
+    SearchSolver(ISearcher<T> *s) {
         iSeracher = s;
     }
     ISearcher<T>* iSeracher;
@@ -24,4 +24,4 @@ public:
 };
 
 
-#endif //EX4_SERACHSOLVER_H
+#endif //EX4_SEARCHSOLVER_H

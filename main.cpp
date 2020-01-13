@@ -4,10 +4,10 @@
 
 #include "boot.h"
 
-int main () {
+int main (int argc, char *argv[]) {
     boot::Main* m = new boot::Main();
-    m->main(12345);
-
+    int port = atoi(argv[1]);
+    m->main(port);
     return 0;
 }
 

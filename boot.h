@@ -10,7 +10,7 @@
 #include "server_side.h"
 #include "MyTestClientHandler.h"
 #include "MySerialServer.h"
-#include "SerachSolver.h"
+#include "SearchSolver.h"
 #include "check.cpp"
 #include "MyClientHandler.h"
 
@@ -25,7 +25,7 @@ namespace boot {
 //            ser->open(port, cli);
 
             ISearcher<Point*> *i = new check<Point*>();
-            Solver<Isearchable<Point*>*, string>* sol = new SerachSolver<Point*>(i);
+            Solver<Isearchable<Point*>*, string>* sol = new SearchSolver<Point*>(i);
             CacheManager<string>* c = new FileCacheManager(5);
             server_side::Server* ser = new MySerialServer();
             ClientHandler* cli = new MyClientHandler(sol, c);
