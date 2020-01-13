@@ -17,10 +17,8 @@ void MyClientHandler::handleClient(int client_socket) {
     char buffer[1024] = {0};
     string row = "";
     vector<string> matrixVec;
-    int valread;//= read(client_socket, buffer, 1024);
+    int valread;
     string strMatrix = "";
-    // char* temp = buffer;
-    //row = strtok(temp, "\n");
     bool doneReading = false;
     while (!doneReading) {
         valread = read(client_socket, buffer, 1024);
@@ -34,12 +32,11 @@ void MyClientHandler::handleClient(int client_socket) {
                 strMatrix += "\n";
                 matrixVec.push_back(row);
                 row = "";
-            }else {
+            } else {
                 row += buffer[i];
             }
         }
     }
-
     if (cache->isInCache(strMatrix)) {
         solution = cache->get(strMatrix);
     } else {
