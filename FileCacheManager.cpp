@@ -22,10 +22,10 @@
         int newKey = hasher(key);
         hashMapString[key]=newKey;
         // insert to cache:
-        updateCache(hashMapString[key], obj);
+        updateCache(newKey, obj);
         // insert to filesystem:
         fstream file;
-        file.open(key, ios::out | ios::binary);
+        file.open(to_string(newKey), ios::out | ios::binary);
         // delete old content of file, if exists:
         file.clear();
         // write object to file:
