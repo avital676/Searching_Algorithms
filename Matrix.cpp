@@ -7,17 +7,15 @@
 Matrix::Matrix(vector<string> s) {
     int countCol = 0;
     int countMatrix = 0;
-    vector<state<Point *>*> row1;
+    vector<state<Point *> *> row1;
     vector<int> intim;
     vector<vector<state<Point *> *>> matrix;
 
     double num;
     string word = "";
-    for (int i = 0; i < s.size() - 1; i++) {
+    for (int i = 0; i < s.size() - 2; i++) {
         for (int j = 0; j < s[i].length(); j++) {
-            if (s[i][j] == ' ') {
-                j++;
-            } else if (s[i][j] == ',') {
+            if (s[i][j] == ',') {
                 num = stoi(word);
                 Point *p = new Point(i, countCol);
                 state<Point *> *s1 = new state<Point *>(p, num);
@@ -25,56 +23,60 @@ Matrix::Matrix(vector<string> s) {
                 row1.push_back(s1);
                 countCol++;
                 word = "";
-            } else {
+            } else if (s[i][j] != ' ') {
                 word += s[i][j];
             }
         }
+        num = stoi(word);
+        Point *p = new Point(i, countCol);
+        state<Point *> *s1 = new state<Point *>(p, num);
+        row1.push_back(s1);
         matrix.push_back(row1);
-        vector<state<Point *> *> row;
+        row1.clear();
         countCol = 0;
         word = "";
     }
     this->matrix = matrix;
-    start = createStateFromString(s[s.size() - 1]);
-    end = createStateFromString(s[s.size()]);
+    start = createStateFromString(s[s.size() - 2]);
+    end = createStateFromString(s[s.size() - 1]);
 
 }
 
-state<Point *>* Matrix::createStateFromString(string s) {
+state<Point *> *Matrix::createStateFromString(string s) {
     string x = "";
     string y = "";
+    string temp = "";
     for (int i = 0; i < s.length(); i++) {
-        if (s[i] == ' ') {
-            i++;
-        }
         if (s[i] == ',') {
-            x = s.substr(0, i);
-            y = s.substr(i, s.length());
-            break;
+            x = temp;
+            temp = "";
+        } else if (s[i] != ' ') {
+            temp += s[i];
         }
     }
-    int Ix = stoi(x);
-    int Iy = stoi(y);
-    return matrix[Ix][Iy];
-}
+        y = temp;
+        int Ix = stoi(x);
+        int Iy = stoi(y);
+        return matrix[Ix][Iy];
+    }
 
-state<Point *> *Matrix::getInitialState() {
-    return start;
-}
+    state<Point *> *Matrix::getInitialState() {
+        return start;
+    }
 
-bool Matrix::isGoalStateSate(state<Point *> *s) {
-    return (s->equals(*end));
-}
+    bool Matrix::isGoalStateSate(state<Point *> *s) {
+        return (s->equals(*end));
+    }
 
-vector<state<Point *> *> *Matrix::getAllPossibleState(state<Point *> *s) {
-    vector<state<Point *> *> *states;
-    int x = s->getMyState()->x;
-    int y = s->getMyState()->y;
-    states->push_back(matrix[x - 1][y]);
-    states->push_back(matrix[x][y + 1]);
-    states->push_back(matrix[x + 1][y]);
-    states->push_back(matrix[x][y - 1]);
-    return states;
-}
+    vector<state<Point *> *> *Matrix::getAllPossibleState(state<Point *> *s) {
+        vector<state<Point *> *> *states;
+        int x = s->getMyState()->x;
+        int y = s->getMyState()->y;
+        states->push_back(matrix[x - 1][y]);
+        states->push_back(matrix[x][y + 1]);
+        states->push_back(matrix[x + 1][y]);
+        states->push_back(matrix[x][y - 1]);
+        return states;
+    }
 
 
