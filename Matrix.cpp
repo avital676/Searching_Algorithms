@@ -21,7 +21,7 @@ Matrix::Matrix(vector<string> s) {
                 num = stoi(word);
                 Point *p = new Point(i, countCol);
                 state<Point *> *s1 = new state<Point *>(p, num);
-                intim.push_back(3);
+                //intim.push_back(3);
                 row1.push_back(s1);
                 countCol++;
                 word = "";
