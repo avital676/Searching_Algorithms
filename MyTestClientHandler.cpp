@@ -25,7 +25,7 @@ void MyTestClientHandler::handleClient(int client_socket) {
             solution = cache->get(line);
         } else {
             //solve the problem and save it in the cache.
-            solution = solver->solve(line);
+            //solution = solver->solve(line);
             cache->insert(line, solution);
         }
         //return solution

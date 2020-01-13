@@ -18,7 +18,7 @@ namespace boot {
     class Main {
     public:
         void main(int port) {
-            ISearcher<Point*>* i = new check<Point*>();
+            ISearcher<Point*> *i = new check<Point*>();
             Solver<Isearchable<Point*>*, string>* sol = new SerachSolver<Point*>(i);
             CacheManager<string>* c = new FileCacheManager(5);
             server_side::Server* ser = new MySerialServer();

@@ -14,18 +14,24 @@ MyClientHandler::MyClientHandler(Solver<Isearchable<Point*>*, string> *solver1, 
 
 void MyClientHandler::handleClient(int client_socket) {
     string solution;
-    char buffer[4096] = {0};
-    string row;
+    char buffer[1024] = {0};
+    char* row;
     vector<string> matrixVec;
-    int valread = read(client_socket, buffer, 4096);;
+    int valread ;//= read(client_socket, buffer, 1024);
     string strMatrix = "";
-    while (true) {
+   // char* temp = buffer;
+    //row = strtok(temp, "\n");
+    while (read(client_socket, buffer, 1024)) {
         row = strtok(buffer, "\n");
-        if (row == "end") {
-            break;
+        while (row!=NULL) {
+            if (strcmp(row, "end") == 0) {
+                break;
+            }
+            strMatrix += row;
+            strMatrix += "\n";
+            matrixVec.push_back(row);
+            row = strtok(NULL, "\n");
         }
-        strMatrix += row += "\n";
-        matrixVec.push_back(row);
     }
     if (cache->isInCache(strMatrix)) {
         solution = cache->get(strMatrix);

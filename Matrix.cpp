@@ -37,7 +37,7 @@ Matrix::Matrix(vector<string> s) {
 
 }
 
-state<Point *> *Matrix::createStateFromString(string s) {
+state<Point *>* Matrix::createStateFromString(string s) {
     string x = "";
     string y = "";
     for (int i = 0; i < s.length(); i++) {
