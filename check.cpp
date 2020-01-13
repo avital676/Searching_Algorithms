@@ -8,7 +8,8 @@ template <typename T>
 class check: public Searcher<Point*>{
     string search(Isearchable<Point*>* problem){
         state<Point*>* s = problem->getInitialState();
-        return to_string(s->getCost());
+        return "check";
+        //return to_string(s->getCost());
     }
 
 };

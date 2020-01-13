@@ -54,7 +54,6 @@ void MyClientHandler::handleClient(int client_socket) {
     is_sent = send(client_socket, a, sizeof(solution), 0);
     if (is_sent == -1) {
         cerr << "error sending message" << endl;
-
     }
 }
 
