@@ -10,7 +10,7 @@
 #include "Isearchable.h"
 template <typename T>
 class Searcher : public ISearcher<T> {
-    virtual string search(Isearchable<T> problem) = 0;
+    virtual string search(Isearchable<T> *problem) = 0;
 };
 
 

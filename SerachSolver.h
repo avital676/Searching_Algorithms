@@ -14,12 +14,12 @@
 template <typename T>
 class SerachSolver : public Solver<Isearchable<T>, string>{
 public:
-    SerachSolver(ISearcher<T> s) {
+    SerachSolver(ISearcher<T> *s) {
         iSeracher = s;
     }
-    ISearcher<T> iSeracher;
-    string solve(Isearchable<T> problem) {
-        return iSeracher.search(problem);
+    ISearcher<T>* iSeracher;
+    string solve(Isearchable<T> *problem) {
+        return iSeracher->search(problem);
     }
 };
 

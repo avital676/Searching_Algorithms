@@ -13,7 +13,7 @@ using namespace std;
 template <typename T>
 class ISearcher {
 public:
-    virtual string search(Isearchable<T> problem) = 0;
+    virtual string search(Isearchable<T> *problem) = 0;
 };
 
 
