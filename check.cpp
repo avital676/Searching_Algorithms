@@ -5,10 +5,10 @@
 #include "Matrix.h"
 #include "state.h"
 template <typename T>
-class check: public Searcher<T>{
-    string search(Isearchable<T> *problem){
-        state<T> s = problem->getInitialState();
-        return to_string(s.getCost());
+class check: public Searcher<Point*>{
+    string search(Isearchable<Point*>* problem){
+        state<Point*>* s = problem->getInitialState();
+        return to_string(s->getCost());
     }
 
 };

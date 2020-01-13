@@ -14,7 +14,6 @@
 #include "check.cpp"
 #include "MyClientHandler.h"
 
-int y;
 namespace boot {
     class Main {
     public:

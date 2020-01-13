@@ -13,7 +13,7 @@
 using namespace std;
 class Matrix : public Isearchable<Point*> {
 private:
-    vector<vector<state<Point*>*>> matrix;
+    vector<vector<state<Point*>*>>* matrix;
     state<Point*>* start;
     state<Point*>* end;
 public:
@@ -21,8 +21,8 @@ public:
     Matrix(vector<string> s);
     state<Point*>* createStateFromString(string s);
     state<Point*>* getInitialState();
-    bool isGoalStateSate(state<Point*> s);
-    vector<state<Point*>*> getAllPossibleState(state<Point*> s);
+    bool isGoalStateSate(state<Point*>* s);
+    vector<state<Point*>*>* getAllPossibleState(state<Point*>* s);
 };
 
 
