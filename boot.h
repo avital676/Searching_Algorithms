@@ -14,6 +14,7 @@
 #include "check.cpp"
 #include "MyClientHandler.h"
 #include "BestFS.h"
+#include "Dfs.h"
 
 namespace boot {
     class Main {
@@ -25,7 +26,7 @@ namespace boot {
 //            ClientHandler* cli = new MyTestClientHandler(sol, c);
 //            ser->open(port, cli);
 
-            ISearcher<Point*> *i = new BestFS();
+            ISearcher<Point*> *i = new Dfs();
             Solver<Isearchable<Point*>*, string>* sol = new SearchSolver<Point*>(i);
             CacheManager<string>* c = new FileCacheManager(5);
             server_side::Server* ser = new MySerialServer();

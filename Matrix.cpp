@@ -42,7 +42,7 @@ Matrix::Matrix(vector<string> s) {
     }
     this->matrix = matrix;
     start = createStateFromString(s[s.size() - 2]);
-    start->trailCost = 0;
+    start->trailCost = start->getCost();
     end = createStateFromString(s[s.size() - 1]);
 
 }
