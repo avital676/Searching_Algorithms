@@ -39,6 +39,21 @@ protected:
         openQ.pop();
         return s;
     }
+    void updateOpenQ(state<Point*>* s) {
+        vector<state<Point*>*> outFromQ;
+        state<Point*>* firstInQ= openQ.pop();
+        while (!firstInQ->equals(*s)){
+            outFromQ.push_back(firstInQ);
+            if (!openQ.empty()) {
+                firstInQ = openQ.pop();
+            }else{
+                return false;
+            }
+        }
+        for (int i=0; i<outFromQ.size(); i++){
+            openQ.push(outFromQ[i]);
+        }
+    }
     void addToOpenQ(state<Point*>* s) {
         openQ.push(s);
     }

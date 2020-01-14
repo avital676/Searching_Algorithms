@@ -14,6 +14,7 @@ template <typename T>
 class ISearcher {
 public:
     virtual string search(Isearchable<T>* problem) = 0;
+    bool isInOpen(state<Point*>* s) = 0;
 };
 
 

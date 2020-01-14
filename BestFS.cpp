@@ -19,7 +19,16 @@ string BestFS::search(Isearchable<Point*> *problem) {
         while (!succ->empty()) {
             s = succ->front();
             succ->pop();
-            if ((closed.find(s) == closed.end()) && ()
+            if ((closed.find(s) == closed.end()) && (!isInOpen(s)) {
+                s->setCameFrom(n);
+                addToOpenQ(s);
+            } else if () {
+                if (isInOpen(s)) {
+                    addToOpenQ(s);
+                } else {
+
+                }
+            }
         }
     }
 }
