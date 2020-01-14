@@ -22,11 +22,11 @@ string BestFS::search(Isearchable<Point*> *problem) {
             if ((closed.find(s) == closed.end()) && (!isInOpen(s)) {
                 s->setCameFrom(n);
                 addToOpenQ(s);
-            } else if () {
+            } else if (s->getCameFrom().trailCost + s->getCost() < s.trailCost) {
                 if (isInOpen(s)) {
                     addToOpenQ(s);
                 } else {
-
+                    updateOpenQ(s);
                 }
             }
         }
