@@ -9,6 +9,8 @@
 #include "ISearcher.h"
 #include "Isearchable.h"
 #include <queue>
+#include <stack>
+
 template <typename T>
 class Searcher : public ISearcher<T> {
 private:
@@ -27,11 +29,20 @@ protected:
     string backTrace(Isearchable<Point*> *problem) {
         state<Point*>* son = problem->getGoalState();
         state<Point*>* father = son->getCameFrom();
+        stack<string> path;
+        int x;
+        int y;
         while (father != NULL) {
+            x = son->getMyState()->x;
+            y = son->getMyState()->y;
 
             son = father;
             father = son->getCameFrom();
         }
+        (matrix[x - 1][y]); // up
+        (matrix[x][y + 1]); // right
+        (matrix[x + 1][y]); // down
+        (matrix[x][y - 1]); // left
     }
 public:
     //virtual string search(Isearchable<T>* problem) = 0;

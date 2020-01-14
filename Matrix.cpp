@@ -76,11 +76,16 @@ vector<state<Point *> *> *Matrix::getAllPossibleState(state<Point *> *s) {
     vector<state<Point *> *> *states;
     int x = s->getMyState()->x;
     int y = s->getMyState()->y;
-    states->push_back(matrix[x - 1][y]);
-    states->push_back(matrix[x][y + 1]);
-    states->push_back(matrix[x + 1][y]);
-    states->push_back(matrix[x][y - 1]);
+    states->push_back(matrix[x - 1][y]); // up
+    states->push_back(matrix[x][y + 1]); // right
+    states->push_back(matrix[x + 1][y]); // down
+    states->push_back(matrix[x][y - 1]); // left
     return states;
 }
 
 
+if (father->getMyState()->x == x + 1) {
+
+} else if (father->getMyState()->x == x + -1) {
+
+} else if
