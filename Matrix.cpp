@@ -3,6 +3,7 @@
 //
 
 #include "Matrix.h"
+#include <limits>
 
 Matrix::Matrix(vector<string> s) {
     int countCol = 0;
@@ -19,6 +20,7 @@ Matrix::Matrix(vector<string> s) {
                 num = stoi(word);
                 Point *p = new Point(i, countCol);
                 state<Point *> *s1 = new state<Point *>(p, num);
+                s1->trailCost= numeric_limits<double >::max();
                 //intim.push_back(3);
                 row1.push_back(s1);
                 countCol++;
@@ -38,6 +40,7 @@ Matrix::Matrix(vector<string> s) {
     }
     this->matrix = matrix;
     start = createStateFromString(s[s.size() - 2]);
+    start->trailCost=0;
     end = createStateFromString(s[s.size() - 1]);
 
 }
