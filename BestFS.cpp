@@ -16,15 +16,21 @@ string BestFS::search(Isearchable<Point*> *problem) {
         if (n->equals(*problem->getGoalState())) {
             return backTrace(problem);
         }
-        queue<state<Point*>*>* succ = problem->getAllPossibleStates(n);
+        queue<state<Point*>*> succ = problem->getAllPossibleStates(n);
         state<Point*>* s;
-        while (!succ->empty()) {
-            s = succ->front();
-            succ->pop();
+        int trail;
+        while (!succ.empty()) {
+            s = succ.front();
+            succ.pop();
+            if (s->getCameFrom()==NULL){
+                trail =0;
+            }else{
+                trail = s->getCameFrom()->trailCost;
+            }
             if ((closed.find(s) == closed.end()) && (!isInOpen(s))) {
                 s->setCameFrom(n);
                 addToOpenQ(s);
-            } else if (s->getCameFrom()->trailCost + s->getCost() < s->trailCost) {
+            }else if (trail + s->getCost() < s->trailCost) {
                 s->trailCost = s->getCameFrom()->trailCost + s->getCost();
                 if (isInOpen(s)) {
                     addToOpenQ(s);

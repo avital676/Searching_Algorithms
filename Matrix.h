@@ -16,6 +16,8 @@ private:
     vector<vector<state<Point*>*>> matrix;
     state<Point*>* start;
     state<Point*>* end;
+    int rowNum;
+    int colNum;
 public:
     Matrix();
     Matrix(vector<string> s);
@@ -23,7 +25,7 @@ public:
     state<Point*>* getInitialState();
     state<Point*>* getGoalState();
     bool isGoalStateSate(state<Point*>* s);
-    queue<state<Point*>*>* getAllPossibleStates(state<Point*>* s);
+    queue<state<Point*>*> getAllPossibleStates(state<Point*>* s);
     string getDirection(state<Point*> *son);
 };
 
