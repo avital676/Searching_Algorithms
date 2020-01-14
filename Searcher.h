@@ -14,25 +14,27 @@
 template <typename T>
 class Searcher : public ISearcher<T> {
 private:
-    priority_queue<state<Point*>> openQ;
+    priority_queue<state<Point*>*> openQ;
     int evaluateNode = 0;
 protected:
     bool isInOpen(state<Point*>* s) {
         vector<state<Point*>*> outFromQ;
-        state<Point*>* firstInQ= openQ.pop();
-        while (!firstInQ->equals(*s)){
-            outFromQ.push_back(firstInQ);
-            if (!openQ.empty()) {
-                firstInQ = openQ.pop();
+        bool found = false;
+        state<Point*>* firstInQ;
+        while (!openQ.empty()) {
+            firstInQ = openQ.top();
+            if (!firstInQ->equals(*s)) {
+                outFromQ.push_back(firstInQ);
+                openQ.pop();
             } else {
-                return false;
+                found = true;
+                break;
             }
         }
-        openQ.push(firstInQ);
         for (int i=0; i<outFromQ.size(); i++){
             openQ.push(outFromQ[i]);
         }
-        return true;
+        return found;
     }
 
     state<Point*>* popOpenQ() {
@@ -44,11 +46,15 @@ protected:
 
     void updateOpenQ(state<Point*>* s) {
         vector<state<Point*>*> outFromQ;
-        state<Point*>* firstInQ= openQ.pop();
-        while (!firstInQ->equals(*s)){
-            outFromQ.push_back(firstInQ);
-            if (!openQ.empty()) {
-                firstInQ = openQ.pop();
+        state<Point*>* firstInQ;
+        while (!openQ.empty()) {
+            firstInQ = openQ.top();
+            if (!firstInQ->equals(*s)) {
+                outFromQ.push_back(firstInQ);
+                openQ.pop();
+            } else {
+                openQ.pop();
+                break;
             }
         }
         for (int i=0; i<outFromQ.size(); i++){

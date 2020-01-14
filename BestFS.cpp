@@ -3,11 +3,13 @@
 //
 
 #include "BestFS.h"
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
+#include <unordered_set>
 
 string BestFS::search(Isearchable<Point*> *problem) {
     addToOpenQ(problem->getInitialState());
-    unordered_set<state<Point*>> closed;
+    //unordered_set<state<Point*>> closed;
+    unordered_set<state<Point*>*> closed;
     while (openQsize() > 0) {
         state<Point*>* n = popOpenQ();
         closed.insert(n);
@@ -19,10 +21,11 @@ string BestFS::search(Isearchable<Point*> *problem) {
         while (!succ->empty()) {
             s = succ->front();
             succ->pop();
-            if ((closed.find(s) == closed.end()) && (!isInOpen(s)) {
+            if ((closed.find(s) == closed.end()) && (!isInOpen(s))) {
                 s->setCameFrom(n);
                 addToOpenQ(s);
-            } else if (s->getCameFrom().trailCost + s->getCost() < s.trailCost) {
+            } else if (s->getCameFrom()->trailCost + s->getCost() < s->trailCost) {
+                s->trailCost = s->getCameFrom()->trailCost + s->getCost();
                 if (isInOpen(s)) {
                     addToOpenQ(s);
                 } else {
