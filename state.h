@@ -4,8 +4,9 @@
 
 #ifndef EX4_STATE_H
 #define EX4_STATE_H
-
+using namespace std;
 #include "Point.cpp"
+#include <iostream>
 template <typename T>
 class state {
 private:

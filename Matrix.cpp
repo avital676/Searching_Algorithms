@@ -14,14 +14,14 @@ Matrix::Matrix(vector<string> s) {
 
     double num;
     string word = "";
-    rowNum = s.size()-2;
+    rowNum = s.size() - 2;
     for (int i = 0; i < s.size() - 2; i++) {
         for (int j = 0; j < s[i].length(); j++) {
             if (s[i][j] == ',') {
                 num = stoi(word);
                 Point *p = new Point(i, countCol);
                 state<Point *> *s1 = new state<Point *>(p, num);
-                s1->trailCost= numeric_limits<double >::max();
+                s1->trailCost = numeric_limits<double>::max();
                 //intim.push_back(3);
                 row1.push_back(s1);
                 countCol++;
@@ -36,13 +36,13 @@ Matrix::Matrix(vector<string> s) {
         row1.push_back(s1);
         matrix.push_back(row1);
         row1.clear();
-        colNum=countCol+1;
+        colNum = countCol + 1;
         countCol = 0;
         word = "";
     }
     this->matrix = matrix;
     start = createStateFromString(s[s.size() - 2]);
-    start->trailCost=0;
+    start->trailCost = 0;
     end = createStateFromString(s[s.size() - 1]);
 
 }
@@ -82,19 +82,27 @@ queue<state<Point *> *> Matrix::getAllPossibleStates(state<Point *> *s) {
     queue<state<Point *> *> states;
     int x = s->getMyState()->x;
     int y = s->getMyState()->y;
-   // states<Point *> *a = matrix[x - 1][y];
-   if (x!=0) {
-       states.push(matrix[x - 1][y]); // up
-   }
-   if (y!=rowNum) {
-       states.push(matrix[x][y + 1]); // right
-   }
-   if (x!=rowNum) {
-       states.push(matrix[x + 1][y]); // down
-   }
-   if (y!=0) {
-       states.push(matrix[x][y - 1]); // left
-   }
+    // states<Point *> *a = matrix[x - 1][y];
+    if (x != 0) {
+        if (matrix[x - 1][y]->getCost() != -1) {
+            states.push(matrix[x - 1][y]); // up
+        }
+    }
+    if (y != colNum - 1) {
+        if (matrix[x][y + 1]->getCost() != -1) {
+            states.push(matrix[x][y + 1]); // right
+        }
+    }
+    if (x != rowNum - 1) {
+        if (matrix[x + 1][y]->getCost() != -1) {
+            states.push(matrix[x + 1][y]); // down
+        }
+    }
+    if (y != 0) {
+        if (matrix[x][y - 1]->getCost() != -1) {
+            states.push(matrix[x][y - 1]); // left
+        }
+    }
     return states;
 }
 
