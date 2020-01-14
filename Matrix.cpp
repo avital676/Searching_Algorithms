@@ -72,36 +72,36 @@ state<Point *> *Matrix::getGoalState() {
     return end;
 }
 
-vector<state<Point *> *> *Matrix::getAllPossibleState(state<Point *> *s) {
-    vector<state<Point *> *> *states;
+queue<state<Point *> *> *Matrix::getAllPossibleStates(state<Point *> *s) {
+    queue<state<Point *> *> *states;
     int x = s->getMyState()->x;
     int y = s->getMyState()->y;
-    states->push_back(matrix[x - 1][y]); // up
-    states->push_back(matrix[x][y + 1]); // right
-    states->push_back(matrix[x + 1][y]); // down
-    states->push_back(matrix[x][y - 1]); // left
+    states->push(matrix[x - 1][y]); // up
+    states->push(matrix[x][y + 1]); // right
+    states->push(matrix[x + 1][y]); // down
+    states->push(matrix[x][y - 1]); // left
     return states;
 }
 
-string Matrix::getDirection(state<Point*> *son){
-    state<Point*> *father = son->getCameFrom();
+string Matrix::getDirection(state<Point *> *son) {
+    state<Point *> *father = son->getCameFrom();
     int x = son->getMyState()->x;
     int y = son->getMyState()->y;
     string direction;
-    if(father->getMyState()->x==(x+1)){
-        direction="Up ("+to_string(son->getCost())+")";
+    if (father->getMyState()->x == (x + 1)) {
+        direction = "Up (" + to_string(son->getCost()) + ")";
         return direction;
     }
-    if(father->getMyState()->x==(x-1)){
-        direction="Down ("+to_string(son->getCost())+")";
+    if (father->getMyState()->x == (x - 1)) {
+        direction = "Down (" + to_string(son->getCost()) + ")";
         return direction;
     }
-    if(father->getMyState()->y==(y+1)){
-        direction="Left ("+to_string(son->getCost())+")";
+    if (father->getMyState()->y == (y + 1)) {
+        direction = "Left (" + to_string(son->getCost()) + ")";
         return direction;
     }
-    if(father->getMyState()->y==(y-1)){
-        direction="Right ("+to_string(son->getCost())+")";
+    if (father->getMyState()->y == (y - 1)) {
+        direction = "Right (" + to_string(son->getCost()) + ")";
         return direction;
     }
 }

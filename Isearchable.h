@@ -6,7 +6,7 @@
 #define EX4_ISEARCHABLE_H
 
 #include "state.h"
-#include <vector>
+#include <queue>
 #include <string>
 
 using namespace std;
@@ -17,7 +17,7 @@ public:
     virtual state<T>* getInitialState()=0;
     virtual bool isGoalStateSate(state<T>* s)=0;
     virtual state<T>* getGoalState() = 0;
-    virtual vector<state<T>*>* getAllPossibleState(state<T>* s)=0;
+    virtual queue<state<T>*>* getAllPossibleStates(state<T>* s)=0;
     virtual string getDirection(state<T>* son) = 0;
 };
 

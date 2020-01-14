@@ -23,7 +23,7 @@ public:
     state<Point*>* getInitialState();
     state<Point*>* getGoalState();
     bool isGoalStateSate(state<Point*>* s);
-    vector<state<Point*>*>* getAllPossibleState(state<Point*>* s);
+    queue<state<Point*>*>* getAllPossibleStates(state<Point*>* s);
     string getDirection(state<Point*> *son);
 };
 

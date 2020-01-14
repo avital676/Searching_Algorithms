@@ -11,8 +11,15 @@ string BestFS::search(Isearchable<Point*> *problem) {
     while (openQsize() > 0) {
         state<Point*>* n = popOpenQ();
         closed.insert(n);
-        if (n->equals(*problem->getGoalState()) {
+        if (n->equals(*problem->getGoalState())) {
             return backTrace(problem);
+        }
+        queue<state<Point*>*>* succ = problem->getAllPossibleStates(n);
+        state<Point*>* s;
+        while (!succ->empty()) {
+            s = succ->front();
+            succ->pop();
+            if ((closed.find(s) == closed.end()) && ()
         }
     }
 }

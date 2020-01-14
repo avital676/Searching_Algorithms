@@ -17,6 +17,9 @@ private:
     priority_queue<state<Point*>> openQ;
     int evaluateNode = 0;
 protected:
+    bool isInOpen(state<Point*>* s) {
+        if (openQ.)
+    }
     state<Point*>* popOpenQ() {
         evaluateNode++; /// MAYBE COST
         state<Point*>* s = openQ.top();
