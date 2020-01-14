@@ -83,9 +83,25 @@ vector<state<Point *> *> *Matrix::getAllPossibleState(state<Point *> *s) {
     return states;
 }
 
-
-if (father->getMyState()->x == x + 1) {
-
-} else if (father->getMyState()->x == x + -1) {
-
-} else if
+string Matrix::getDirection(state<Point*> *son){
+    state<Point*> *father = son->getCameFrom();
+    int x = son->getMyState()->x;
+    int y = son->getMyState()->y;
+    string direction;
+    if(father->getMyState()->x==(x+1)){
+        direction="Up ("+to_string(son->getCost())+")";
+        return direction;
+    }
+    if(father->getMyState()->x==(x-1)){
+        direction="Down ("+to_string(son->getCost())+")";
+        return direction;
+    }
+    if(father->getMyState()->y==(y+1)){
+        direction="Left ("+to_string(son->getCost())+")";
+        return direction;
+    }
+    if(father->getMyState()->y==(y-1)){
+        direction="Right ("+to_string(son->getCost())+")";
+        return direction;
+    }
+}

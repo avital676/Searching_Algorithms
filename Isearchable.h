@@ -7,6 +7,7 @@
 
 #include "state.h"
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -17,6 +18,7 @@ public:
     virtual bool isGoalStateSate(state<T>* s)=0;
     virtual state<T>* getGoalState() = 0;
     virtual vector<state<T>*>* getAllPossibleState(state<T>* s)=0;
+    virtual string getDirection(state<T>* son) = 0;
 };
 
 #endif //EX4_ISEARCHABLE_H

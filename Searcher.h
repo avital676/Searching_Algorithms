@@ -28,21 +28,18 @@ protected:
     }
     string backTrace(Isearchable<Point*> *problem) {
         state<Point*>* son = problem->getGoalState();
-        state<Point*>* father = son->getCameFrom();
-        stack<string> path;
+        stack<string> pathStack;
         int x;
         int y;
-        while (father != NULL) {
-            x = son->getMyState()->x;
-            y = son->getMyState()->y;
-
-            son = father;
-            father = son->getCameFrom();
+        while (son != problem->getInitialState()) {
+            pathStack.push(problem->getDirection(son));
         }
-        (matrix[x - 1][y]); // up
-        (matrix[x][y + 1]); // right
-        (matrix[x + 1][y]); // down
-        (matrix[x][y - 1]); // left
+        string trace = "";
+        while(!pathStack.empty()) {
+            trace += pathStack.top();
+            trace += ", ";
+            pathStack.pop();
+        }
     }
 public:
     //virtual string search(Isearchable<T>* problem) = 0;
