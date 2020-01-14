@@ -18,7 +18,20 @@ private:
     int evaluateNode = 0;
 protected:
     bool isInOpen(state<Point*>* s) {
-        if (openQ.)
+        vector<state<Point*>*> outFromQ;
+        state<Point*>* firstInQ= openQ.pop();
+        while (!firstInQ->equals(*s)){
+            outFromQ.push_back(firstInQ);
+            if (!openQ.empty()) {
+                firstInQ = openQ.pop();
+            }else{
+                return false;
+            }
+        }
+        for (int i=0; i<outFromQ.size(); i++){
+            openQ.push(outFromQ[i]);
+        }
+        return true;
     }
     state<Point*>* popOpenQ() {
         evaluateNode++; /// MAYBE COST
