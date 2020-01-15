@@ -20,22 +20,13 @@ namespace boot {
     class Main {
     public:
         void main(int port) {
-//            Solver<string, string>* sol = new StringReverser();
-//            CacheManager<string>* c = new FileCacheManager(5);
-//            server_side::Server* ser = new MySerialServer();
-//            ClientHandler* cli = new MyTestClientHandler(sol, c);
-//            ser->open(port, cli);
 
-            ISearcher<Point*> *i = new Dfs();
+            ISearcher<Point*> *i = new BestFS();
             Solver<Isearchable<Point*>*, string>* sol = new SearchSolver<Point*>(i);
             CacheManager<string>* c = new FileCacheManager(5);
             server_side::Server* ser = new MySerialServer();
             ClientHandler* cli = new MyClientHandler(sol, c);
             ser->open(port, cli);
-
-//            CacheManager<string>* c = new FileCacheManager(5);
-//            c->insert("first", "firstobj");
-//            c->insert("second", "secondobj");
         }
     };
 }

@@ -28,7 +28,8 @@ string BestFS::search(Isearchable<Point *> *problem) {
                 addToOpenQ(s);
             } else if ((n->trailCost + s->getCost()) < s->trailCost) {
                 s->trailCost = n->trailCost + s->getCost();
-                if (isInOpen(s)) {
+                s->setCameFrom(n);
+                if (!isInOpen(s)) {
                     addToOpenQ(s);
                 } else {
                     updateOpenQ(s);
