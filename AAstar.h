@@ -1,4 +1,3 @@
-
 #ifndef MILESTONE2_A_STAR_H
 #define MILESTONE2_A_STAR_H
 
@@ -87,7 +86,7 @@ public:
     }
 
     priority_queue<state<Point*>*, vector<state<Point*> *>, Comp> updatePriorityQ(priority_queue<state<Point*> *,
-    vector<state<Point*> *>, Comp> p ){
+            vector<state<Point*> *>, Comp> p ){
         priority_queue<state<Point*> *, vector<state<Point*> *>, Comp> newQ;
         while (!p.empty()) {
             newQ.push(p.top());

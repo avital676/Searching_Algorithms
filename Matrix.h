@@ -28,7 +28,7 @@ public:
     queue<state<Point*>*> getAllPossibleStates(state<Point*>* s);
     string getDirection(state<Point*> *son);
     vector<vector<state<Point*>*>>* getObj();
+    void printMatrix();
 };
-
 
 #endif //EX4_MATRIX_H

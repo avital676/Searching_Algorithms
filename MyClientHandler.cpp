@@ -23,10 +23,7 @@ void MyClientHandler::handleClient(int client_socket) {
     while (!doneReading) {
         valread = read(client_socket, buffer, 1024);
         for (int i = 0; i < valread; i++) {
-            if (row == "end") {
-                doneReading = true;
-                break;
-            }
+           // cout<<row<<endl;
             if (buffer[i] == '\n') {
                 strMatrix += row;
                 strMatrix += "\n";
@@ -36,7 +33,12 @@ void MyClientHandler::handleClient(int client_socket) {
                 row += buffer[i];
             }
         }
+        if (row == "end") {
+            doneReading = true;
+            break;
+        }
     }
+
     if (cache->isInCache(strMatrix)) {
         solution = cache->get(strMatrix);
     } else {

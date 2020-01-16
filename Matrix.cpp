@@ -132,3 +132,5 @@ string Matrix::getDirection(state<Point *> *son) {
 vector<vector<state<Point*>*>>* Matrix::getObj(){
     return &matrix;
 }
+void Matrix::printMatrix(){
+}

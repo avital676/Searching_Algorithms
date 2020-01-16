@@ -24,35 +24,12 @@ namespace boot {
     public:
         void main(int port) {
             cout<<"Bfs"<<endl;
-            ISearcher<Point*> *i = new BestFS();
+            ISearcher<Point*> *i = new AAStar();
             Solver<Isearchable<Point*>*, string>* sol = new SearchSolver<Point*>(i);
             CacheManager<string>* c = new FileCacheManager(5);
-            server_side::Server* ser = new MyParallelServer();
+            server_side::Server* ser = new MySerialServer();
             ClientHandler* cli = new MyClientHandler(sol, c);
             ser->open(port, cli);
-//
-//            cout<<"Bfs"<<endl;
-//            i = new Bfs();
-//           sol = new SearchSolver<Point*>(i);
-//            c = new FileCacheManager(5);
-//          ser = new MySerialServer();
-//           cli = new MyClientHandler(sol, c);
-//            ser->open(port, cli);
-//
-//            cout<<"Dfs"<<endl;
-//            i = new Dfs();
-//            sol = new SearchSolver<Point*>(i);
-//            c = new FileCacheManager(5);
-//            ser = new MySerialServer();
-//            cli = new MyClientHandler(sol, c);
-//            ser->open(port, cli);
-//
-//            i = new Astar();
-//            sol = new SearchSolver<Point*>(i);
-//            c = new FileCacheManager(5);
-//            ser = new MySerialServer();
-//            cli = new MyClientHandler(sol, c);
-//            ser->open(port, cli);
 
         }
     };
