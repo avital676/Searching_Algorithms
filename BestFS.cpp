@@ -8,7 +8,6 @@
 
 string BestFS::search(Isearchable<Point *> *problem) {
     addToOpenQ(problem->getInitialState());
-    //unordered_set<state<Point*>> closed;
     unordered_set<state<Point *> *> closed;
     while (openQsize() > 0) {
         state<Point *> *n = popOpenQ();
@@ -18,7 +17,6 @@ string BestFS::search(Isearchable<Point *> *problem) {
         }
         queue<state<Point *> *> succ = problem->getAllPossibleStates(n);
         state<Point *> *s;
-        int trail;
         while (!succ.empty()) {
             s = succ.front();
             succ.pop();
