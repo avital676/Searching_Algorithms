@@ -1,10 +1,5 @@
-//
-// Created by avital on 12/01/2020.
-//
-
 #ifndef EX4_MYCLIENTHANDLER_H
 #define EX4_MYCLIENTHANDLER_H
-
 
 #include "ClientHandler.h"
 #include "CacheManager.h"
@@ -13,6 +8,7 @@
 #include <iostream>
 #include <unistd.h>
 
+// handle client with a problem of type Isearchable
 class MyClientHandler : public ClientHandler {
 public:
     Solver <Isearchable<Point*>*, string>* solver;
@@ -20,6 +16,5 @@ public:
     MyClientHandler(Solver <Isearchable<Point*>*, string>* solver1, CacheManager <string>* cache1);
     void handleClient(int client_socket);
 };
-
 
 #endif //EX4_MYCLIENTHANDLER_H

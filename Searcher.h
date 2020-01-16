@@ -1,7 +1,3 @@
-//
-// Created by avital on 12/01/2020.
-//
-
 #ifndef EX4_SEARCHER_H
 #define EX4_SEARCHER_H
 
@@ -11,15 +7,16 @@
 #include <queue>
 #include <stack>
 #include "Compare.h"
-//this is abstract class - for help the use of algoritem.
 using namespace std;
+
+// abstract class- searches for a solution of a given problem
 template<typename T>
 class Searcher : public ISearcher<T> {
 private:
     priority_queue<state<Point *> *, vector<state<Point *> *>, Compare> openQ;
     int evaluateNode = 0;
 protected:
-//the func check if the state is in open queue
+    // check if a state is in open queue
     bool isInOpen(state<Point *> *s) {
         vector<state<Point *> *> outFromQ;
         bool found = false;
@@ -43,14 +40,16 @@ protected:
         }
         return found;
     }
-    //pop the first element in queue and return him.
+
+    // pop from open queue
     state<Point *> *popOpenQ() {
         evaluateNode++;
         state<Point *> *s = openQ.top();
         openQ.pop();
         return s;
     }
-//update the s states - that he will be on the top of the queue.
+
+    // update priorities in open queue
     void updateOpenQ(state<Point *> *s) {
         vector<state<Point *> *> outFromQ;
         state<Point *> *firstInQ;
@@ -68,11 +67,13 @@ protected:
             openQ.push(outFromQ[i]);
         }
     }
-//add to openQ.
+
+    // add a state to open queue
     void addToOpenQ(state<Point *> *s) {
         openQ.push(s);
     }
-//return the all string to client - check from the last state to the first how the final path look like.
+
+    // track the path of the solution for the problem
     string backTrace(Isearchable<Point *> *problem) {
         state<Point *> *son = problem->getGoalState();
         stack<string> pathStack;
@@ -112,6 +113,5 @@ public:
         evaluateNode++;
     }
 };
-
 
 #endif //EX4_SEARCHER_H

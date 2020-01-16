@@ -1,5 +1,5 @@
-#ifndef MILESTONE2_A_STAR_H
-#define MILESTONE2_A_STAR_H
+#ifndef EX4_AASTAR_H
+#define EX4_AASTAR_H
 
 #include <cfloat>
 #include "Searcher.h"
@@ -11,21 +11,22 @@
 #include "state.h"
 using namespace std;
 
-
 class AAStar : public Searcher<Point*> {
+
+    // compare states by their heuristic path cost:
     class Comp {
     public:
         bool operator()(state<Point*>* left, state<Point*>* right) {
             return (left->getFheuristics()) > (right->getFheuristics());
         }
     };
+
 public:
+    // search a path to solve the given problem using A* algorithm
     string search(Isearchable<Point*>* searchable) override {
-        //this->searchable = searchable;
         state<Point*> *current;
         queue<state<Point*> *> neighbors;
         priority_queue<state<Point*>*, vector<state<Point*>*>, Comp> open;
-        //searchable->getInitialState()->setFheuristics(0);
         open.push(searchable->getInitialState());
         vector<state<Point*> *> closed;
         while (!open.empty()) {
@@ -36,21 +37,18 @@ public:
             if (current->equals(*searchable->getGoalState())) {
                 evaluateNodePlus();
                 return backTrace(searchable);
-                //return searchable->getPath();
             }
             neighbors = searchable->getAllPossibleStates(current);
             state<Point*> *neighbor;
             while (!neighbors.empty()) {
                 neighbor= neighbors.front();
                 neighbors.pop();
-                //first time encountering state
                 if (!inOpen(open, neighbor) && !inClosed(closed, neighbor)) {
                     neighbor->setCameFrom(current);
                     neighbor->addToTrailCost(current->trailCost);
                     neighbor->setFheuristics(calculateF(neighbor,searchable->getGoalState()));
                     open.push(neighbor);
                     continue;
-                    //neighbor is either in open or closed and - can improve path
                 } else if (inClosed(closed, neighbor)){
                     continue;
                 }
@@ -65,6 +63,7 @@ public:
         return "No path";
     }
 
+    // check if a given state is in the open queue
     bool inOpen(priority_queue<state<Point*> *, vector<state<Point*> *>, Comp> p, state<Point*> *current) {
         while (!p.empty()) {
             //found state in priority/-queue
@@ -74,6 +73,7 @@ public:
         return false;
     }
 
+    // check if a given state is in the close vector
     bool inClosed(vector<state<Point*>*> closed, state<Point*>* current) {
         for (auto state:closed) {
             if (current->equals(*state)) {
@@ -83,6 +83,7 @@ public:
         return false;
     }
 
+    // update costs of states in priority queue
     priority_queue<state<Point*>*, vector<state<Point*> *>, Comp> updatePriorityQ(priority_queue<state<Point*> *,
             vector<state<Point*> *>, Comp> p ){
         priority_queue<state<Point*> *, vector<state<Point*> *>, Comp> newQ;
@@ -93,14 +94,7 @@ public:
         return newQ;
     }
 
-    /*  void deleteFromClose(vector<State<T>*> &closed, State<T>* del) {
-         for (State<T>* state=closed.begin(); state != closed.end(); state++) {
-              if (state->Equals(del)) {
-                  closed.erase(state);
-              }
-          }
-      }*/
-
+    // calculate heuristic path cost
     double calculateF(state<Point*>* state1, state<Point*>* goal) {
         //manhattan distance
         double h = abs(state1->getMyState()->x - goal->getMyState()->x) +
@@ -108,11 +102,5 @@ public:
         double g = state1->trailCost;
         return g + h;
     }
-
-
-
-
-
 };
-
-#endif //MILESTONE2_A_STAR_H
+#endif //EX4AA_STAR_H

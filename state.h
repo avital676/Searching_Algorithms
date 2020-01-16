@@ -1,16 +1,12 @@
-//
-// Created by noa on 12/01/2020.
-//
-
 #ifndef EX4_STATE_H
 #define EX4_STATE_H
-using namespace std;
 
 #include "Point.cpp"
 #include <iostream>
 #include <cfloat>
+using namespace std;
 
-template<typename T>
+template <typename T>
 class state {
 private:
     T Mystate;
@@ -30,25 +26,28 @@ public:
         trailCost = cost1;
         Fheuristics = (FLT_MAX);
     }
+
+    bool equals(state<T> s){
 //check if 2 states are equals
     bool equals(state<T> s) {
         return Mystate->equals(s.getMyState());
-
     }
 
     double getCost() {
+
+    double getCost(){
         return cost;
     }
 
-    state<T> *getCameFrom() {
+    state<T>* getCameFrom(){
         return cameFrom;
     }
 
-    void setCameFrom(state<T> *s) {
+    void setCameFrom(state<T> *s){
         this->cameFrom = s;
     }
 
-    T getMyState() {
+    T getMyState(){
         return Mystate;
     }
 
@@ -56,15 +55,13 @@ public:
         Fheuristics = f;
     }
 
-    double getFheuristics() {
+    double getFheuristics(){
         return Fheuristics;
     }
 
-    void addToTrailCost(double i) {
-        trailCost = cost + i;
+    void addToTrailCost(double i){
+        trailCost =cost +i;
     }
-
 };
-
 
 #endif //EX4_STATE_H

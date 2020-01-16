@@ -1,17 +1,15 @@
-//
-// Created by avital on 12/01/2020.
-//
-
 #include <cstring>
 #include <vector>
 #include "MyClientHandler.h"
 #include "Matrix.h"
 
+// constructor: create a client handler with given solver and cache
 MyClientHandler::MyClientHandler(Solver<Isearchable<Point *> *, string> *solver1, CacheManager<string> *cache1) {
     solver = solver1;
     cache = cache1;
 }
 
+// read from client and solve the problem
 void MyClientHandler::handleClient(int client_socket) {
     string solution;
     char buffer[1024] = {0};
@@ -23,12 +21,10 @@ void MyClientHandler::handleClient(int client_socket) {
     while (!doneReading) {
         valread = read(client_socket, buffer, 1024);
         for (int i = 0; i < valread; i++) {
-
             if (row == "end") {
                 doneReading = true;
                 break;
             }
-           // cout<<row<<endl;
             if (buffer[i] == '\n') {
                 strMatrix += row;
                 strMatrix += "\n";
@@ -42,12 +38,11 @@ void MyClientHandler::handleClient(int client_socket) {
             doneReading = true;
         }
     }
-
     if (cache->isInCache(strMatrix)) {
         solution = cache->get(strMatrix);
     } else {
         Isearchable<Point *> *matrix = new Matrix(matrixVec);
-        //solve the problem and save in the cache:
+        // solve the problem and save solution in cache:
         solution = solver->solve(matrix);
         cache->insert(strMatrix, solution);
     }
@@ -59,5 +54,3 @@ void MyClientHandler::handleClient(int client_socket) {
         cerr << "error sending message" << endl;
     }
 }
-
-

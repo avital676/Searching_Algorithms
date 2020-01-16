@@ -1,4 +1,3 @@
-
 #include "FileCacheManager.h"
 
     FileCacheManager::FileCacheManager(int capacity) {

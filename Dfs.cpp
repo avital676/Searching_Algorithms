@@ -1,9 +1,6 @@
-//
-// Created by noa on 14/01/2020.
-//
-
 #include "Dfs.h"
 
+// search a path to solve the given problem
 string Dfs::search(Isearchable<Point *> *problem) {
     searchDfs(problem->getInitialState(), problem->getGoalState(), problem);
     if (problem->getGoalState()->getCameFrom() == nullptr) {
@@ -13,6 +10,7 @@ string Dfs::search(Isearchable<Point *> *problem) {
 
 }
 
+// use DFS
 void Dfs::searchDfs(state<Point *> *start, state<Point *> *end, Isearchable<Point *> *problem) {
     MySet.insert(start);
     state<Point *> *s;
@@ -32,5 +30,3 @@ void Dfs::searchDfs(state<Point *> *start, state<Point *> *end, Isearchable<Poin
         }
     }
 }
-
-

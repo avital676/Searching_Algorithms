@@ -9,8 +9,9 @@
 #include "state.h"
 #include <string>
 #include "Searchable.h"
-
 using namespace std;
+
+// matrix object
 class Matrix : public Isearchable<Point*> {
 private:
     vector<vector<state<Point*>*>> matrix;
@@ -24,11 +25,9 @@ public:
     state<Point*>* createStateFromString(string s);
     state<Point*>* getInitialState();
     state<Point*>* getGoalState();
-    bool isGoalStateSate(state<Point*>* s);
+    bool isGoalState(state<Point*>* s);
     queue<state<Point*>*> getAllPossibleStates(state<Point*>* s);
     string getDirection(state<Point*> *son);
-    vector<vector<state<Point*>*>>* getObj();
-    void printMatrix();
 };
 
 #endif //EX4_MATRIX_H

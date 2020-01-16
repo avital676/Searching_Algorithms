@@ -1,7 +1,3 @@
-//
-// Created by avital on 12/01/2020.
-//
-
 #ifndef EX4_SEARCHSOLVER_H
 #define EX4_SEARCHSOLVER_H
 
@@ -23,6 +19,5 @@ public:
 
     }
 };
-
 
 #endif //EX4_SEARCHSOLVER_H

@@ -1,10 +1,7 @@
-//
-// Created by noa on 09/01/2020.
-//
-
 #include <algorithm>
 #include "StringReverser.h"
-//take the string and reverse it.
+
+// reverse a given string
 string StringReverser::solve(string problem) {
     int numCharacters = problem.length();
     for (int i = 0; i < numCharacters / 2; i++) {
@@ -12,4 +9,3 @@ string StringReverser::solve(string problem) {
     }
     return problem;
 }
-
