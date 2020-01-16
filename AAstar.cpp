@@ -3,3 +3,5 @@
 //
 
 #include "AAstar.h"
+//priority_queue<state<Point*>*, vector<state<Point*> *>, Comp> AAStar::updatePriorityQ(priority_queue<state<Point*> *,
+    //    vector<state<Point*> *>, Comp> p );
