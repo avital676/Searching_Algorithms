@@ -6,6 +6,9 @@
 
 string Dfs::search(Isearchable<Point *> *problem) {
     searchDfs(problem->getInitialState(), problem->getGoalState(), problem);
+    if (problem->getGoalState()->getCameFrom() == nullptr) {
+        return "No path";
+    }
     return backTrace(problem);
 
 }
