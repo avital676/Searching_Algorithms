@@ -9,4 +9,4 @@ add_executable(ex4 CacheManager.h ClientHandler.h FileCacheManager.cpp main.cpp 
         MyTestClientHandler.cpp server_side.h Solver.h StringReverser.cpp state.h Isearchable.h
         Matrix.cpp ISearcher.h MyClientHandler.cpp check.cpp boot.h Point.cpp Searchable.h Searcher.h
         SearchSolver.h BestFS.cpp BestFS.h Compare.h Dfs.cpp Dfs.h Bfs.cpp Bfs.h AAstar.cpp AAstar.h
-        MyParallelServer.h MyParallelServer.cpp)
+        MyParallelServer.h MyParallelServer.cpp vvvv.cpp vvvv.h)

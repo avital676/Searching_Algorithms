@@ -3,7 +3,7 @@
 //
 
 #include "MyParallelServer.h"
-
+#include <bits/sigthread.h>
 struct ClientT {
     int socket;
     ClientHandler* clientHandler;
@@ -20,18 +20,19 @@ void MyParallelServer::start(int socketfd, sockaddr_in address, ClientHandler* c
         // accept a client:
         int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
         struct timeval tv;
-        tv.tv_sec = 120;
+        tv.tv_sec = 10;
         setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
         if (client_socket == -1) {
             cout << "Timeout" << endl;
             break;
         }
+        setsockopt(client_socket, SOL_SOCKET, SO_RCVTIMEO, (char *) &tv, sizeof(tv));
         auto client = new ClientT;
         client->socket = client_socket;
         client->clientHandler = c;
         pthread_t t;
         if (pthread_create(&t, nullptr, startThread, client) < 0) {
-            perror("error on creating thread");
+            perror("Error creating thread");
             exit(1);
         }
         threadStack.push(t);
@@ -47,9 +48,9 @@ int MyParallelServer::open(int port, ClientHandler* c) {
         std::cerr << "Could not create a socket" << std::endl;
         return -1;
     }
-    struct timeval tv;
-    tv.tv_sec = 120;
-    setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
+   // struct timeval tv;
+    //tv.tv_sec = 120;
+   // setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
     sockaddr_in address;
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
@@ -65,20 +66,20 @@ int MyParallelServer::open(int port, ClientHandler* c) {
         return -3;
     }
     start(socketfd, address, c);
-    // accept client:
-    int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
-    if (client_socket == -1) {
-        std::cerr << "Error accepting client" << std::endl;
-    }
-    auto client = new ClientT;
-    client->socket = client_socket;
-    client->clientHandler = c;
-    pthread_t t;
-    if (pthread_create(&t, nullptr, startThread, client) > 0) {
-        std::cerr << "Error creating thread" << endl;
-        exit(1);
-    }
-    threadStack.push(t);
+//    // accept client:
+//    int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
+//    if (client_socket == -1) {
+//        std::cerr << "Error accepting client" << std::endl;
+//    }
+//    auto client = new ClientT;
+//    client->socket = client_socket;
+//    client->clientHandler = c;
+//    pthread_t t;
+//    if (pthread_create(&t, nullptr, startThread, client) > 0) {
+//        std::cerr << "Error creating thread" << endl;
+//        exit(1);
+//    }
+ //   threadStack.push(t);
     return 0;
 }
 

@@ -43,7 +43,6 @@ void MyClientHandler::handleClient(int client_socket) {
         Isearchable<Point *> *matrix = new Matrix(matrixVec);
         //solve the problem and save in the cache:
         solution = solver->solve(matrix);
-        //solution = "ccc";
         cache->insert(strMatrix, solution);
     }
     // return solution to client:
