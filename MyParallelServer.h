@@ -17,7 +17,6 @@
 class MyParallelServer : public server_side::Server{
 public:
     stack<pthread_t> threadStack;
-    //int socketfd;
     void start(int socketfd, sockaddr_in address, ClientHandler* c);
     void stop();
     int open(int port, ClientHandler* c);

@@ -17,6 +17,7 @@
 #include "Dfs.h"
 #include "Bfs.h"
 #include "AAstar.h"
+#include "MyParallelServer.h"
 
 namespace boot {
     class Main {
@@ -25,7 +26,7 @@ namespace boot {
             ISearcher<Point*> *i = new AAStar();
             Solver<Isearchable<Point*>*, string>* sol = new SearchSolver<Point*>(i);
             CacheManager<string>* c = new FileCacheManager(5);
-            server_side::Server* ser = new MySerialServer();
+            server_side::Server* ser = new MyParallelServer();
             ClientHandler* cli = new MyClientHandler(sol, c);
             ser->open(port, cli);
 //
