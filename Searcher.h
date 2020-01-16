@@ -40,7 +40,7 @@ protected:
     }
 
     state<Point *> *popOpenQ() {
-        evaluateNode++; /// MAYBE COST
+        evaluateNode++;
         state<Point *> *s = openQ.top();
         openQ.pop();
         return s;

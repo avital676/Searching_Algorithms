@@ -9,11 +9,12 @@ void MySerialServer::start(int socketfd, sockaddr_in address, ClientHandler* c) 
         // accept a client:
         int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
         if (client_socket == -1) {
-            cout << "error accepting client"<< endl;  //// HERE SHOULD BE TIMEOUT. if timeout- go to the while condition again
+            return;
         }
         c->handleClient(client_socket);
     }
 }
+
 
 void MySerialServer::stop() {
     toStop = true;
@@ -26,6 +27,9 @@ int MySerialServer::open(int port, ClientHandler* c) {
         std::cerr << "Could not create a socket" << std::endl;
         return -1;
     }
+    struct timeval tv;
+    tv.tv_sec = 120;
+    setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
     sockaddr_in address;
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
@@ -41,9 +45,9 @@ int MySerialServer::open(int port, ClientHandler* c) {
         return -3;
     }
     // activate thread:
-    MySerialServer *s = new MySerialServer();
-    thread readThread(&MySerialServer::start, s, socketfd, address, c);
+    std::thread readThread(&MySerialServer::start, this, socketfd, address, c);
     readThread.join();
+    cout << "ok" << endl;
     close(socketfd);
 
     return 0;

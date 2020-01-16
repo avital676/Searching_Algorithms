@@ -1,3 +1,3 @@
-timeout (client handler or server)
+
 parallel server
 evaluated nodes- ++ or cost
