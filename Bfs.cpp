@@ -5,6 +5,9 @@
 #include "Bfs.h"
 string Bfs::search(Isearchable<Point *> *problem) {
     searchBfs(problem->getInitialState(), problem->getGoalState(), problem);
+    if (problem->getGoalState()->getCameFrom() == nullptr) {
+        return "No path";
+    }
     return backTrace(problem);
 }
 

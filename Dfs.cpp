@@ -6,6 +6,9 @@
 
 string Dfs::search(Isearchable<Point *> *problem) {
     searchDfs(problem->getInitialState(), problem->getGoalState(), problem);
+    if (problem->getGoalState()->getCameFrom() == nullptr) {
+        return "No path";
+    }
     return backTrace(problem);
 
 }
@@ -13,7 +16,7 @@ string Dfs::search(Isearchable<Point *> *problem) {
 void Dfs::searchDfs(state<Point *> *start, state<Point *> *end, Isearchable<Point *> *problem) {
     MySet.insert(start);
     state<Point *> *s;
-    if (s->equals(*end)) {
+    if (start->equals(*end)) {
         return;
     }
     queue<state<Point *> *> succ = problem->getAllPossibleStates(start);
