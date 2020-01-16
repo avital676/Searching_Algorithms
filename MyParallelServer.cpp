@@ -32,6 +32,7 @@ void MyParallelServer::start(int socketfd, sockaddr_in address, ClientHandler* c
             cout << "Error accepting client" << endl;
             break;
         }
+        cout << "Accepted client" << endl;
         setsockopt(client_socket, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeout, sizeof(timeout));
         auto client = new ClientT;
         client->socket = client_socket;
