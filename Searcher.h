@@ -79,8 +79,10 @@ protected:
         string trace = "";
         while (!pathStack.empty()) {
             trace += pathStack.top();
-            trace += ", ";
             pathStack.pop();
+            if (pathStack.size()!=0) {
+                trace += ", ";
+            }
         }
         cout<<trace<<endl;
         return trace;
