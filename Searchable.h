@@ -9,7 +9,7 @@
 #include "Isearchable.h"
 
 class Searchable : public Isearchable<Point*>{
-
+//
 };
 
 
