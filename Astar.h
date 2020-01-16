@@ -14,6 +14,7 @@
 #include <list>
 #include <algorithm>
 #include <unordered_map>
+#include <math.h>
 
 class Astar : public Searcher<Point *> {
     int NumberOfNodesEvaluated = 0;
@@ -50,7 +51,7 @@ public:
     }
 
     /**
-     * calculate h huristic - manhattan distance
+     * calculate h huristic - air distance
      * @param st position in matrix
      * @param searchable
      * @return
@@ -60,7 +61,9 @@ public:
         int m = searchable->getObj()->at(0).size();
         int x = st->x;
         int y = st->y;
-        return (n - 1 - x) + (m - 1 - y);
+        return (n-1-x)+(m-1-y);
+       // int result=  pow (n - 1 - x, 2) + pow(m - 1 - y, 2);
+       // return sqrt(result);
     }
 
     /**
@@ -69,9 +72,9 @@ public:
      * @param node
      * @return if find in the map
      */
-    bool findState(unordered_map<double, state<Point *> *> *open, state<Point *> *node) {
-        unordered_map<double, state<Point *> *>::iterator it;
-        for (it = open->begin(); it != open->end(); ++it) {
+    bool findState(multimap<double, state<Point *> *> open, state<Point *> *node) {
+        multimap<double, state<Point *> *>::iterator it;
+        for (it = open.begin(); it != open.end(); ++it) {
             if (it->second == node) {
                 return true;
             }
@@ -84,8 +87,8 @@ public:
      * @param open map
      * @param node specific state
      */
-    void deleteState(unordered_map<double, state<Point *> *> *open, state<Point *> *node) {
-        typename std::unordered_map<double, state<Point *> *>::iterator it;
+    void deleteState(multimap<double, state<Point *> *> *open, state<Point *> *node) {
+        typename std::multimap<double, state<Point *> *>::iterator it;
         for (it = open->begin(); it != open->end(); ++it) {
             if (it->second == node) {
                 open->erase(it);
@@ -119,21 +122,21 @@ public:
             }
             h.push_back(row);
         }
-        unordered_map<double, state<Point *> *> open;
+        multimap<double, state<Point *> *> open;
         list<state<Point *> *> closed;
         state<Point *> *node_current;
         state<Point *> *initial = searchable->getInitialState();
         open.insert(make_pair((initial->trailCost + calch(initial->getMyState(), searchable)), initial));
-        while (open.size() != 0) {
+        while (!open.empty()) {
             this->NumberOfNodesEvaluated++;
             //the least f node
             node_current = open.begin()->second;
             deleteState(&open, node_current);
             //if it the goal node
             if (node_current == searchable->getGoalState()) { break; }
-            if (node_current->getMyState()->x == 0 && node_current->getMyState()->y == 2) {
-                int a = 0;
-            }
+//            if (node_current->getMyState()->x == 0 && node_current->getMyState()->y == 2) {
+//                int a = 0;
+//            }
             queue<state<Point *> *> neighbours = searchable->getAllPossibleStates(node_current);
             state<Point *> *neighbour;
             while (!neighbours.empty()) {
@@ -141,7 +144,7 @@ public:
                 neighbours.pop();
                 double currentval = node_current->trailCost + neighbour->getCost();
                 //in open
-                if (findState(&open, neighbour)) {
+                if (findState(open, neighbour)) {
                     if (g(neighbour, searchable) <= currentval) { continue; }
                     neighbour->setCameFrom(node_current);
                     // in closed
@@ -153,6 +156,7 @@ public:
                     open.insert(make_pair(f(h, neighbour, searchable), neighbour));
                 }
                 neighbour->trailCost = currentval;
+                cout<<currentval<<endl;
             }
             closed.push_back(node_current);
 

@@ -16,19 +16,42 @@
 #include "BestFS.h"
 #include "Dfs.h"
 #include "Bfs.h"
-#include "Astar.h"
+#include "AAstar.h"
 
 namespace boot {
     class Main {
     public:
         void main(int port) {
-
-            ISearcher<Point*> *i = new Astar();
+            ISearcher<Point*> *i = new AAStar();
             Solver<Isearchable<Point*>*, string>* sol = new SearchSolver<Point*>(i);
             CacheManager<string>* c = new FileCacheManager(5);
             server_side::Server* ser = new MySerialServer();
             ClientHandler* cli = new MyClientHandler(sol, c);
             ser->open(port, cli);
+//
+//            cout<<"Bfs"<<endl;
+//            i = new Bfs();
+//           sol = new SearchSolver<Point*>(i);
+//            c = new FileCacheManager(5);
+//          ser = new MySerialServer();
+//           cli = new MyClientHandler(sol, c);
+//            ser->open(port, cli);
+//
+//            cout<<"Dfs"<<endl;
+//            i = new Dfs();
+//            sol = new SearchSolver<Point*>(i);
+//            c = new FileCacheManager(5);
+//            ser = new MySerialServer();
+//            cli = new MyClientHandler(sol, c);
+//            ser->open(port, cli);
+//
+//            i = new Astar();
+//            sol = new SearchSolver<Point*>(i);
+//            c = new FileCacheManager(5);
+//            ser = new MySerialServer();
+//            cli = new MyClientHandler(sol, c);
+//            ser->open(port, cli);
+
         }
     };
 }

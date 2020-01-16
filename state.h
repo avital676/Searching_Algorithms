@@ -7,12 +7,15 @@
 using namespace std;
 #include "Point.cpp"
 #include <iostream>
+#include <cfloat>
 template <typename T>
 class state {
 private:
     T Mystate;
     double cost;
     state<T> *cameFrom;
+    double Fheuristics;
+
 public:
     double trailCost;
     double sum;
@@ -20,6 +23,8 @@ public:
         cost = cost1;
         Mystate = state;
         cameFrom = nullptr;
+        trailCost=cost1;
+        Fheuristics=(FLT_MAX);
     }
     bool equals(state<T> s){
         return Mystate->equals(s.getMyState());
@@ -36,6 +41,15 @@ public:
     }
     T getMyState(){
         return Mystate;
+    }
+    void setFheuristics(double f){
+        Fheuristics = f;
+    }
+    double getFheuristics(){
+        return Fheuristics;
+    }
+    void addToTrailCost(double i){
+        trailCost =cost +i;
     }
 
 };

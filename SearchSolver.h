@@ -20,6 +20,7 @@ public:
     ISearcher<T>* iSeracher;
     string solve(Isearchable<T>* problem) {
         return iSeracher->search(problem);
+
     }
 };
 

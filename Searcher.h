@@ -18,6 +18,7 @@ private:
     priority_queue<state<Point *> *, vector<state<Point *> *>, Compare> openQ;
     int evaluateNode = 0;
 protected:
+
     bool isInOpen(state<Point *> *s) {
         vector<state<Point *> *> outFromQ;
         bool found = false;
@@ -85,6 +86,7 @@ protected:
             }
         }
         cout<<trace<<endl;
+        cout<<getNumOfNodesEvaluated()<<endl;
         return trace;
     }
 
@@ -96,6 +98,12 @@ public:
 
     int getNumOfNodesEvaluated() {
         return evaluateNode;
+    }
+    priority_queue<state<Point *> *, vector<state<Point *> *>, Compare> getOpenQ(){
+        return openQ;
+    }
+    void evaluateNodePlus(){
+        evaluateNode++;
     }
 };
 
