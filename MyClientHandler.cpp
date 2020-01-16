@@ -23,6 +23,11 @@ void MyClientHandler::handleClient(int client_socket) {
     while (!doneReading) {
         valread = read(client_socket, buffer, 1024);
         for (int i = 0; i < valread; i++) {
+
+            if (row == "end") {
+                doneReading = true;
+                break;
+            }
            // cout<<row<<endl;
             if (buffer[i] == '\n') {
                 strMatrix += row;
@@ -35,7 +40,6 @@ void MyClientHandler::handleClient(int client_socket) {
         }
         if (row == "end") {
             doneReading = true;
-            break;
         }
     }
 
