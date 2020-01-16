@@ -35,4 +35,5 @@ string BestFS::search(Isearchable<Point *> *problem) {
             }
         }
     }
+    return "No path";
 }

@@ -6,8 +6,8 @@
 string Bfs::search(Isearchable<Point *> *problem) {
     searchBfs(problem->getInitialState(), problem->getGoalState(), problem);
     return backTrace(problem);
-
 }
+
 void Bfs::searchBfs(state<Point *> *start, state<Point *> *end, Isearchable<Point *> *problem) {
     state<Point *> *s;
     addToOpenQ(start);

@@ -12,7 +12,7 @@ struct ClientT {
 void* startThread(void* par) {
     auto client = (ClientT*) par;
     client->clientHandler->handleClient(client->socket);
-    delete client;
+    //delete client;
 }
 
 void MyParallelServer::start(int socketfd, sockaddr_in address, ClientHandler* c) {

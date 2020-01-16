@@ -28,7 +28,6 @@ public:
         //searchable->getInitialState()->setFheuristics(0);
         open.push(searchable->getInitialState());
         vector<state<Point*> *> closed;
-
         while (!open.empty()) {
             current = open.top();
             open.pop();
@@ -63,8 +62,7 @@ public:
                 }
             }
         }
-        searchable->getGoalState()->trailCost = (-1);
-        return "-1";
+        return "No path";
     }
 
     bool inOpen(priority_queue<state<Point*> *, vector<state<Point*> *>, Comp> p, state<Point*> *current) {

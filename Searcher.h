@@ -77,7 +77,7 @@ protected:
             pathStack.push(problem->getDirection(son));
             son = son->getCameFrom();
         }
-        string trace = "";
+        string trace = to_string(getNumOfNodesEvaluated()) + "\n";
         while (!pathStack.empty()) {
             trace += pathStack.top();
             pathStack.pop();
