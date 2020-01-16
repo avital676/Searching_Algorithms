@@ -27,6 +27,7 @@ public:
     bool isGoalStateSate(state<Point*>* s);
     queue<state<Point*>*> getAllPossibleStates(state<Point*>* s);
     string getDirection(state<Point*> *son);
+    vector<vector<state<Point*>*>>* getObj();
 };
 
 

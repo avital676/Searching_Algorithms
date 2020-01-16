@@ -128,3 +128,7 @@ string Matrix::getDirection(state<Point *> *son) {
         return direction;
     }
 }
+//vector<vector<state<Point*>*>>
+vector<vector<state<Point*>*>>* Matrix::getObj(){
+    return &matrix;
+}

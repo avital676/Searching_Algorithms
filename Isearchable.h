@@ -19,6 +19,7 @@ public:
     virtual state<T>* getGoalState() = 0;
     virtual queue<state<T>*> getAllPossibleStates(state<T>* s)=0;
     virtual string getDirection(state<T>* son) = 0;
+    virtual vector<vector<state<T>*>>* getObj()=0;
 };
 
 #endif //EX4_ISEARCHABLE_H
