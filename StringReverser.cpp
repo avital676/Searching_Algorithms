@@ -4,7 +4,7 @@
 
 #include <algorithm>
 #include "StringReverser.h"
-
+//take the string and reverse it.
 string StringReverser::solve(string problem) {
     int numCharacters = problem.length();
     for (int i = 0; i < numCharacters / 2; i++) {

@@ -24,7 +24,7 @@ namespace boot {
     public:
         void main(int port) {
             cout<<"Bestfs"<<endl;
-            ISearcher<Point*> *i = new Bfs();
+            ISearcher<Point*> *i = new BestFS();
             Solver<Isearchable<Point*>*, string>* sol = new SearchSolver<Point*>(i);
             CacheManager<string>* c = new FileCacheManager(5);
             server_side::Server* ser = new MySerialServer();

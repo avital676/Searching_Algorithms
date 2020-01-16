@@ -13,7 +13,7 @@ string Dfs::search(Isearchable<Point *> *problem) {
 void Dfs::searchDfs(state<Point *> *start, state<Point *> *end, Isearchable<Point *> *problem) {
     MySet.insert(start);
     state<Point *> *s;
-    if (s->equals(*end)) {
+    if (start->equals(*end)) {
         return;
     }
     queue<state<Point *> *> succ = problem->getAllPossibleStates(start);
@@ -23,6 +23,7 @@ void Dfs::searchDfs(state<Point *> *start, state<Point *> *end, Isearchable<Poin
         set<state<Point *> *>::iterator it = MySet.find(s);
         if (it == MySet.end()) {
             s->setCameFrom(start);
+            evaluateNodePlus();
             s->trailCost = start->trailCost + 1;
             searchDfs(s, end, problem);
         }

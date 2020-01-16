@@ -10,7 +10,7 @@
 #include "CacheManager.h"
 #include "FileCacheManager.h"
 
-
+//interface for part 2 -
 namespace server_side {
     class Server {
     protected:

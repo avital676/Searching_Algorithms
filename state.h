@@ -5,51 +5,63 @@
 #ifndef EX4_STATE_H
 #define EX4_STATE_H
 using namespace std;
+
 #include "Point.cpp"
 #include <iostream>
 #include <cfloat>
-template <typename T>
+
+template<typename T>
 class state {
 private:
     T Mystate;
     double cost;
     state<T> *cameFrom;
+    //use only in A* algorithem.
     double Fheuristics;
 
 public:
     double trailCost;
     double sum;
-    state(T state, double cost1){
+//construstor
+    state(T state, double cost1) {
         cost = cost1;
         Mystate = state;
         cameFrom = nullptr;
-        trailCost=cost1;
-        Fheuristics=(FLT_MAX);
+        trailCost = cost1;
+        Fheuristics = (FLT_MAX);
     }
-    bool equals(state<T> s){
+//check if 2 states are equals
+    bool equals(state<T> s) {
         return Mystate->equals(s.getMyState());
 
     }
-    double getCost(){
+
+    double getCost() {
         return cost;
     }
-    state<T>* getCameFrom(){
+
+    state<T> *getCameFrom() {
         return cameFrom;
     }
-    void setCameFrom(state<T> *s){
+
+    void setCameFrom(state<T> *s) {
         this->cameFrom = s;
     }
-    T getMyState(){
+
+    T getMyState() {
         return Mystate;
     }
-    void setFheuristics(double f){
+
+    void setFheuristics(double f) {
         Fheuristics = f;
     }
-    double getFheuristics(){
+
+    double getFheuristics() {
         return Fheuristics;
     }
-    void addToTrailCost(double i){
-        trailCost =cost +i;
+
+    void addToTrailCost(double i) {
+        trailCost = cost + i;
     }
 
 };
