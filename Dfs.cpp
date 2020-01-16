@@ -13,7 +13,7 @@ string Dfs::search(Isearchable<Point *> *problem) {
 void Dfs::searchDfs(state<Point *> *start, state<Point *> *end, Isearchable<Point *> *problem) {
     MySet.insert(start);
     state<Point *> *s;
-    if (start->equals(*end)) {
+    if (s->equals(*end)) {
         return;
     }
     queue<state<Point *> *> succ = problem->getAllPossibleStates(start);

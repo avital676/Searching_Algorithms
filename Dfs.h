@@ -7,10 +7,13 @@
 
 #include "Searcher.h"
 #include <set>
+
 class Dfs : public Searcher<Point *> {
-    set<state<Point*>*> MySet;
+    set<state<Point *> *> MySet;
+
     string search(Isearchable<Point *> *problem);
-    void searchDfs(state<Point*>* start, state<Point*>* end,Isearchable<Point *> *problem );
+
+    void searchDfs(state<Point *> *start, state<Point *> *end, Isearchable<Point *> *problem);
 };
 
 

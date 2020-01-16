@@ -15,13 +15,14 @@
 #include "MyClientHandler.h"
 #include "BestFS.h"
 #include "Dfs.h"
+#include "Bfs.h"
 
 namespace boot {
     class Main {
     public:
         void main(int port) {
 
-            ISearcher<Point*> *i = new BestFS();
+            ISearcher<Point*> *i = new Bfs();
             Solver<Isearchable<Point*>*, string>* sol = new SearchSolver<Point*>(i);
             CacheManager<string>* c = new FileCacheManager(5);
             server_side::Server* ser = new MySerialServer();
