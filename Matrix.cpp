@@ -112,19 +112,19 @@ string Matrix::getDirection(state<Point *> *son) {
     int y = son->getMyState()->y;
     string direction;
     if (father->getMyState()->x == (x + 1)) {
-        direction = "Up (" + to_string(son->getCost()) + ")";
+        direction = "Up (" + to_string(son->trailCost) + ")";
         return direction;
     }
     if (father->getMyState()->x == (x - 1)) {
-        direction = "Down (" + to_string(son->getCost()) + ")";
+        direction = "Down (" + to_string(son->trailCost) + ")";
         return direction;
     }
     if (father->getMyState()->y == (y + 1)) {
-        direction = "Left (" + to_string(son->getCost()) + ")";
+        direction = "Left (" + to_string(son->trailCost) + ")";
         return direction;
     }
     if (father->getMyState()->y == (y - 1)) {
-        direction = "Right (" + to_string(son->getCost()) + ")";
+        direction = "Right (" + to_string(son->trailCost) + ")";
         return direction;
     }
 }
