@@ -11,12 +11,13 @@ string Bfs::search(Isearchable<Point *> *problem) {
 
 // use BFS
 void Bfs::searchBfs(state<Point *> *start, state<Point *> *end, Isearchable<Point *> *problem) {
-    set<state<Point *> *> MySet;
+    set<state<Point*>*> MySet;
     state<Point *> *s;
     addToOpenQ(start);
     MySet.insert(start);
     while (openQsize() != 0) {
         state<Point *> *n = popOpenQ();
+        cout<<to_string(n->getMyState()->x) +"  "+ to_string(n->getMyState()->y)<<endl;
         if (n->equals(*end)) {
             return;
         }
@@ -27,7 +28,7 @@ void Bfs::searchBfs(state<Point *> *start, state<Point *> *end, Isearchable<Poin
             set<state<Point *> *>::iterator it = MySet.find(s);
             if (it == MySet.end()) {
                 s->setCameFrom(n);
-                s->setTrailCost(n->getTrailCost() + 1);
+                s->trailCost = n->trailCost + 1;
                 MySet.insert(s);
                 addToOpenQ(s);
             }

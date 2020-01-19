@@ -14,11 +14,12 @@ private:
     state<T> *cameFrom;
     //use only in A* algorithem.
     double Fheuristics;
-    double trailCost;
+   // double trailCost;
 
 public:
     double sum;
-//construstor
+    double trailCost;
+    //construstor
     state(T state, double cost1) {
         cost = cost1;
         Mystate = state;
