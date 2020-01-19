@@ -3,17 +3,17 @@
 // struct saving client info
 struct ClientT {
     int socket;
-    ClientHandler* clientHandler;
+    ClientHandler *clientHandler;
 };
 
 // thread function for client
-void* startThread(void* par) {
-    auto client = (ClientT*) par;
+void *startThread(void *par) {
+    auto client = (ClientT *) par;
     client->clientHandler->handleClient(client->socket);
 }
 
 // start accepting clients and activate threads for each client
-void MyParallelServer::start(int socketfd, sockaddr_in address, ClientHandler* c) {
+void MyParallelServer::start(int socketfd, sockaddr_in address, ClientHandler *c) {
     while (true) {
         // accept a client:
         int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
@@ -47,7 +47,7 @@ void MyParallelServer::start(int socketfd, sockaddr_in address, ClientHandler* c
 }
 
 // open socket for the server on a given port
-int MyParallelServer::open(int port, ClientHandler* c) {
+int MyParallelServer::open(int port, ClientHandler *c) {
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if (socketfd == -1) {
         std::cerr << "Could not create a socket" << std::endl;

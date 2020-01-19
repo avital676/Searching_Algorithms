@@ -94,8 +94,7 @@ protected:
             }
         }
         cout << trace << endl;
-        cout << "\n" << endl;
-        while(!openQ.empty()) {
+        while (!openQ.empty()) {
             openQ.pop();
         }
         return trace;

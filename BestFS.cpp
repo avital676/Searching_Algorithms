@@ -11,7 +11,6 @@ string BestFS::search(Isearchable<Point *> *problem) {
         state<Point *> *n = popOpenQ();
         closed.insert(n);
         if (n->equals(*problem->getGoalState())) {
-            cout<<to_string(evaluateNum)<<endl;
             return backTrace(problem);
         }
         queue<state<Point *> *> succ = problem->getAllPossibleStates(n);

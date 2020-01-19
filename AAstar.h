@@ -37,7 +37,6 @@ public:
             closed.push_back(current);
             if (current->equals(*searchable->getGoalState())) {
                 evaluateNodePlus();
-                cout<<to_string(evaluateNum)<<endl;
                 return backTrace(searchable);
             }
             neighbors = searchable->getAllPossibleStates(current);

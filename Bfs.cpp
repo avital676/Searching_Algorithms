@@ -20,7 +20,6 @@ void Bfs::searchBfs(state<Point *> *start, state<Point *> *end, Isearchable<Poin
         state<Point *> *n = popOpenQ();
         evaluateNum++;
         if (n->equals(*end)) {
-            cout<<to_string(evaluateNum)<<endl;
             return;
         }
         queue<state<Point *> *> succ = problem->getAllPossibleStates(n);
