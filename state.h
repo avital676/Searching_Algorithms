@@ -45,7 +45,7 @@ public:
     }
 
     void setTrailCost(double t) {
-        trailCost += t;
+        trailCost = t;
     }
 
     void setCameFrom(state<T> *s){

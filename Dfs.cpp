@@ -12,22 +12,41 @@ string Dfs::search(Isearchable<Point *> *problem) {
 
 // use DFS
 void Dfs::searchDfs(state<Point *> *start, state<Point *> *end, Isearchable<Point *> *problem) {
-    set<state<Point *> *> MySet;
-    MySet.insert(start);
+    stack<state<Point *> *> stack;
+    vector<state<Point *> *> visited;
     state<Point *> *s;
-    if (start->equals(*end)) {
-        return;
-    }
-    queue<state<Point *> *> succ = problem->getAllPossibleStates(start);
-    while (!succ.empty()) {
-        s = succ.front();
-        succ.pop();
-        set<state<Point *> *>::iterator it = MySet.find(s);
-        if (it == MySet.end()) {
-            s->setCameFrom(start);
-            evaluateNodePlus();
-            s->setTrailCost(start->getTrailCost() + s->getCost());
-            searchDfs(s, end, problem);
+    state<Point *> *current;
+    stack.push(start);
+    while (!stack.empty()) {
+        current = stack.top();
+        stack.pop();
+        evaluateNodePlus();
+        if (!inVisited(visited, current)) {
+            visited.push_back(current);
+        }
+        if (start->equals(*end)) {
+            return;
+        }
+        queue<state<Point *> *> succ = problem->getAllPossibleStates(current);
+        while (!succ.empty()) {
+            s = succ.front();
+            succ.pop();
+            if (!inVisited(visited, s)) {
+                s->setCameFrom(current);
+                s->setTrailCost(current->getTrailCost() + s->getCost());
+                stack.push(s);
+            }
         }
     }
 }
+
+bool Dfs::inVisited(vector<state<Point *> *> visited, state<Point *> *current) {
+    for (auto state:visited) {
+        if (current->equals(*state)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
