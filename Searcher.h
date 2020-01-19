@@ -85,7 +85,7 @@ protected:
             pathStack.push(problem->getDirection(son));
             son = son->getCameFrom();
         }
-        string trace = "";
+        string trace = to_string(getNumOfNodesEvaluated()) + "\n";
         //chenge the stack into string.
         while (!pathStack.empty()) {
             trace += pathStack.top();
@@ -94,10 +94,10 @@ protected:
                 trace += ", ";
             }
         }
-        cout<<to_string(getNumOfNodesEvaluated())<<endl;
+        cout << to_string(getNumOfNodesEvaluated()) << endl;
         cout << trace << endl;
         cout << "\n" << endl;
-        while(!openQ.empty()) {
+        while (!openQ.empty()) {
             openQ.pop();
         }
         return trace;

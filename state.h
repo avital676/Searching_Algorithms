@@ -4,9 +4,10 @@
 #include "Point.cpp"
 #include <iostream>
 #include <cfloat>
+
 using namespace std;
 
-template <typename T>
+template<typename T>
 class state {
 private:
     T Mystate;
@@ -14,10 +15,12 @@ private:
     state<T> *cameFrom;
     //use only in A* algorithem.
     double Fheuristics;
-    double trailCost;
+
 
 public:
+    double trailCost;
     double sum;
+
 //construstor
     state(T state, double cost1) {
         cost = cost1;
@@ -32,11 +35,11 @@ public:
         return Mystate->equals(s.getMyState());
     }
 
-    double getCost(){
+    double getCost() {
         return cost;
     }
 
-    state<T>* getCameFrom(){
+    state<T> *getCameFrom() {
         return cameFrom;
     }
 
@@ -48,11 +51,11 @@ public:
         trailCost = t;
     }
 
-    void setCameFrom(state<T> *s){
+    void setCameFrom(state<T> *s) {
         this->cameFrom = s;
     }
 
-    T getMyState(){
+    T getMyState() {
         return Mystate;
     }
 
@@ -60,12 +63,12 @@ public:
         Fheuristics = f;
     }
 
-    double getFheuristics(){
+    double getFheuristics() {
         return Fheuristics;
     }
 
-    void addToTrailCost(double i){
-        trailCost =cost +i;
+    void addToTrailCost(double i) {
+        trailCost = cost + i;
     }
 };
 
