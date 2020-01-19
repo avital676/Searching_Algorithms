@@ -2,7 +2,7 @@
 
 // accept a client and call a method to handle it
 void MySerialServer::start(int socketfd, sockaddr_in address, ClientHandler* c) {
-    while (!toStop) {
+    while (true) {
         // accept a client:
         int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
         timeval timeout;

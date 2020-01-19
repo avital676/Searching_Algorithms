@@ -93,7 +93,6 @@ protected:
                 trace += ", ";
             }
         }
-        cout << trace << endl;
         while (!openQ.empty()) {
             openQ.pop();
         }
