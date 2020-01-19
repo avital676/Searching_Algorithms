@@ -14,9 +14,9 @@ private:
     state<T> *cameFrom;
     //use only in A* algorithem.
     double Fheuristics;
+    double trailCost;
 
 public:
-    double trailCost;
     double sum;
 //construstor
     state(T state, double cost1) {
@@ -27,13 +27,10 @@ public:
         Fheuristics = (FLT_MAX);
     }
 
-    bool equals(state<T> s){
-//check if 2 states are equals
+    //check if 2 states are equals
     bool equals(state<T> s) {
         return Mystate->equals(s.getMyState());
     }
-
-    double getCost() {
 
     double getCost(){
         return cost;
@@ -41,6 +38,14 @@ public:
 
     state<T>* getCameFrom(){
         return cameFrom;
+    }
+
+    double getTrailCost() {
+        return trailCost;
+    }
+
+    void setTrailCost(double t) {
+        trailCost += t;
     }
 
     void setCameFrom(state<T> *s){

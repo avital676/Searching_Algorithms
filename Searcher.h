@@ -7,6 +7,7 @@
 #include <queue>
 #include <stack>
 #include "Compare.h"
+
 using namespace std;
 
 // abstract class- searches for a solution of a given problem
@@ -84,17 +85,21 @@ protected:
             pathStack.push(problem->getDirection(son));
             son = son->getCameFrom();
         }
-        string trace = to_string(getNumOfNodesEvaluated()) + "\n";
+        string trace = "";
         //chenge the stack into string.
         while (!pathStack.empty()) {
             trace += pathStack.top();
             pathStack.pop();
-            if (pathStack.size()!=0) {
+            if (pathStack.size() != 0) {
                 trace += ", ";
             }
         }
-        cout<<trace<<endl;
-        cout<<getNumOfNodesEvaluated()<<endl;
+        cout<<to_string(getNumOfNodesEvaluated())<<endl;
+        cout << trace << endl;
+        cout << "\n" << endl;
+        while(!openQ.empty()) {
+            openQ.pop();
+        }
         return trace;
     }
 
@@ -106,10 +111,12 @@ public:
     int getNumOfNodesEvaluated() {
         return evaluateNode;
     }
-    priority_queue<state<Point *> *, vector<state<Point *> *>, Compare> getOpenQ(){
+
+    priority_queue<state<Point *> *, vector<state<Point *> *>, Compare> getOpenQ() {
         return openQ;
     }
-    void evaluateNodePlus(){
+
+    void evaluateNodePlus() {
         evaluateNode++;
     }
 };

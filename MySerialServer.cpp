@@ -53,7 +53,6 @@ int MySerialServer::open(int port, ClientHandler* c) {
     // activate thread:
     std::thread readThread(&MySerialServer::start, this, socketfd, address, c);
     readThread.join();
-    cout << "ok" << endl;
     close(socketfd);
     return 0;
 }

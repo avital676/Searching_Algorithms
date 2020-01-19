@@ -7,9 +7,12 @@
 #include <sys/socket.h>
 #include <iostream>
 #include <unistd.h>
+#include <mutex>
 
 // handle client with a problem of type Isearchable
 class MyClientHandler : public ClientHandler {
+private:
+    mutex mut;
 public:
     Solver <Isearchable<Point*>*, string>* solver;
     CacheManager <string>* cache;

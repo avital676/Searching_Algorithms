@@ -1,6 +1,7 @@
 #ifndef EX4_BESTFS_H
 #define EX4_BESTFS_H
 
+#include <mutex>
 #include "Searcher.h"
 
 // solves a problem using BestFS algorithm

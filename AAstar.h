@@ -45,15 +45,15 @@ public:
                 neighbors.pop();
                 if (!inOpen(open, neighbor) && !inClosed(closed, neighbor)) {
                     neighbor->setCameFrom(current);
-                    neighbor->addToTrailCost(current->trailCost);
+                    neighbor->addToTrailCost(current->getTrailCost());
                     neighbor->setFheuristics(calculateF(neighbor,searchable->getGoalState()));
                     open.push(neighbor);
                     continue;
                 } else if (inClosed(closed, neighbor)){
                     continue;
                 }
-                else if (current->trailCost + neighbor->getCost() < neighbor->trailCost) {
-                    neighbor->trailCost= (current->trailCost + neighbor->getCost());
+                else if (current->getTrailCost() + neighbor->getCost() < neighbor->getTrailCost()) {
+                    neighbor->setTrailCost((current->getTrailCost() + neighbor->getCost()));
                     neighbor->setFheuristics(calculateF(neighbor, searchable->getGoalState()));
                     neighbor->setCameFrom(current);
                     open = updatePriorityQ(open);
@@ -99,7 +99,7 @@ public:
         //manhattan distance
         double h = abs(state1->getMyState()->x - goal->getMyState()->x) +
                    abs(state1->getMyState()->y - goal->getMyState()->y);
-        double g = state1->trailCost;
+        double g = state1->getTrailCost();
         return g + h;
     }
 };

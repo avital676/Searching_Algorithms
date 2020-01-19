@@ -11,6 +11,7 @@ MyClientHandler::MyClientHandler(Solver<Isearchable<Point *> *, string> *solver1
 
 // read from client and solve the problem
 void MyClientHandler::handleClient(int client_socket) {
+    mut.lock();
     string solution;
     char buffer[1024] = {0};
     string row = "";
@@ -53,4 +54,5 @@ void MyClientHandler::handleClient(int client_socket) {
     if (is_sent == -1) {
         cerr << "error sending message" << endl;
     }
+    mut.unlock();
 }

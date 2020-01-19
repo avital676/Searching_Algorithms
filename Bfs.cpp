@@ -11,6 +11,7 @@ string Bfs::search(Isearchable<Point *> *problem) {
 
 // use BFS
 void Bfs::searchBfs(state<Point *> *start, state<Point *> *end, Isearchable<Point *> *problem) {
+    set<state<Point *> *> MySet;
     state<Point *> *s;
     addToOpenQ(start);
     MySet.insert(start);
@@ -26,7 +27,7 @@ void Bfs::searchBfs(state<Point *> *start, state<Point *> *end, Isearchable<Poin
             set<state<Point *> *>::iterator it = MySet.find(s);
             if (it == MySet.end()) {
                 s->setCameFrom(n);
-                s->trailCost = n->trailCost + 1;
+                s->setTrailCost(n->getTrailCost() + 1);
                 MySet.insert(s);
                 addToOpenQ(s);
             }

@@ -23,12 +23,8 @@
         // insert to cache:
         updateCache(newKey, obj);
         // insert to filesystem:
-        fstream file;
-        file.open(to_string(newKey), ios::out | ios::binary);
-        // delete old content of file, if exists:
-        file.clear();
-        // write object to file:
-        file.write((char *) &obj, sizeof(obj));
+        ofstream file(to_string(newKey));
+        file << obj;
         file.close();
     }
 

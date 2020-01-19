@@ -5,7 +5,6 @@
 Matrix::Matrix(vector<string> s) {
     int countCol = 0;
     vector<state<Point *> *> row1;
-    vector<int> intim;
     vector<vector<state<Point *> *>> matrix;
     double num;
     string word = "";
@@ -16,7 +15,7 @@ Matrix::Matrix(vector<string> s) {
                 num = stoi(word);
                 Point *p = new Point(i, countCol);
                 state<Point *> *s1 = new state<Point *>(p, num);
-                s1->trailCost = numeric_limits<double>::max();
+                s1->setTrailCost(numeric_limits<double>::max());
                 row1.push_back(s1);
                 countCol++;
                 word = "";
@@ -36,7 +35,7 @@ Matrix::Matrix(vector<string> s) {
     }
     this->matrix = matrix;
     start = createStateFromString(s[s.size() - 2]);
-    start->trailCost = start->getCost();
+    start->setTrailCost(start->getCost());
     end = createStateFromString(s[s.size() - 1]);
 }
 
@@ -109,19 +108,19 @@ string Matrix::getDirection(state<Point *> *son) {
     int y = son->getMyState()->y;
     string direction;
     if (father->getMyState()->x == (x + 1)) {
-        direction = "Up (" + to_string(son->trailCost) + ")";
+        direction = "Up (" + to_string(son->getTrailCost()) + ")";
         return direction;
     }
     if (father->getMyState()->x == (x - 1)) {
-        direction = "Down (" + to_string(son->trailCost) + ")";
+        direction = "Down (" + to_string(son->getTrailCost()) + ")";
         return direction;
     }
     if (father->getMyState()->y == (y + 1)) {
-        direction = "Left (" + to_string(son->trailCost) + ")";
+        direction = "Left (" + to_string(son->getTrailCost()) + ")";
         return direction;
     }
     if (father->getMyState()->y == (y - 1)) {
-        direction = "Right (" + to_string(son->trailCost) + ")";
+        direction = "Right (" + to_string(son->getTrailCost()) + ")";
         return direction;
     }
 }
