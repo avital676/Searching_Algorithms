@@ -44,7 +44,6 @@ protected:
 
     // pop from open queue
     state<Point *> *popOpenQ() {
-        evaluateNode++;
         state<Point *> *s = openQ.top();
         openQ.pop();
         return s;
@@ -85,7 +84,7 @@ protected:
             pathStack.push(problem->getDirection(son));
             son = son->getCameFrom();
         }
-        string trace = to_string(getNumOfNodesEvaluated()) + "\n";
+        string trace = "";
         //chenge the stack into string.
         while (!pathStack.empty()) {
             trace += pathStack.top();
@@ -94,10 +93,9 @@ protected:
                 trace += ", ";
             }
         }
-        cout << to_string(getNumOfNodesEvaluated()) << endl;
         cout << trace << endl;
         cout << "\n" << endl;
-        while (!openQ.empty()) {
+        while(!openQ.empty()) {
             openQ.pop();
         }
         return trace;

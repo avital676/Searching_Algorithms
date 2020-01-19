@@ -12,6 +12,7 @@ string Dfs::search(Isearchable<Point *> *problem) {
 
 // use DFS
 void Dfs::searchDfs(state<Point *> *start, state<Point *> *end, Isearchable<Point *> *problem) {
+    int evaluateNum=0;
     stack<state<Point *> *> stack;
     vector<state<Point *> *> visited;
     state<Point *> *s;
@@ -20,11 +21,12 @@ void Dfs::searchDfs(state<Point *> *start, state<Point *> *end, Isearchable<Poin
     while (!stack.empty()) {
         current = stack.top();
         stack.pop();
-        evaluateNodePlus();
+        evaluateNum++;
         if (!inVisited(visited, current)) {
             visited.push_back(current);
         }
         if (start->equals(*end)) {
+            cout<<to_string(evaluateNum)<<endl;
             return;
         }
         queue<state<Point *> *> succ = problem->getAllPossibleStates(current);
@@ -38,6 +40,7 @@ void Dfs::searchDfs(state<Point *> *start, state<Point *> *end, Isearchable<Poin
             }
         }
     }
+    cout<<to_string(evaluateNum)<<endl;
 }
 
 bool Dfs::inVisited(vector<state<Point *> *> visited, state<Point *> *current) {

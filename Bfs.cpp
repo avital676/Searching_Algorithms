@@ -11,14 +11,16 @@ string Bfs::search(Isearchable<Point *> *problem) {
 
 // use BFS
 void Bfs::searchBfs(state<Point *> *start, state<Point *> *end, Isearchable<Point *> *problem) {
-    set<state<Point *> *> MySet;
+    int evaluateNum=0;
+    set<state<Point*>*> MySet;
     state<Point *> *s;
     addToOpenQ(start);
     MySet.insert(start);
     while (openQsize() != 0) {
         state<Point *> *n = popOpenQ();
-        cout << to_string(n->getMyState()->x) + "  " + to_string(n->getMyState()->y) << endl;
+        evaluateNum++;
         if (n->equals(*end)) {
+            cout<<to_string(evaluateNum)<<endl;
             return;
         }
         queue<state<Point *> *> succ = problem->getAllPossibleStates(n);
