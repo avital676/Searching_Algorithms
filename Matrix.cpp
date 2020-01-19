@@ -1,17 +1,12 @@
-//
-// Created by noa on 12/01/2020.
-//
-
 #include "Matrix.h"
 #include <limits>
 
+// constructor: create matrix from given vector
 Matrix::Matrix(vector<string> s) {
     int countCol = 0;
-    int countMatrix = 0;
     vector<state<Point *> *> row1;
     vector<int> intim;
     vector<vector<state<Point *> *>> matrix;
-
     double num;
     string word = "";
     rowNum = s.size() - 2;
@@ -22,7 +17,6 @@ Matrix::Matrix(vector<string> s) {
                 Point *p = new Point(i, countCol);
                 state<Point *> *s1 = new state<Point *>(p, num);
                 s1->trailCost = numeric_limits<double>::max();
-                //intim.push_back(3);
                 row1.push_back(s1);
                 countCol++;
                 word = "";
@@ -44,9 +38,9 @@ Matrix::Matrix(vector<string> s) {
     start = createStateFromString(s[s.size() - 2]);
     start->trailCost = start->getCost();
     end = createStateFromString(s[s.size() - 1]);
-
 }
 
+// create a state in matrix from s given string
 state<Point *> *Matrix::createStateFromString(string s) {
     string x = "";
     string y = "";
@@ -65,24 +59,26 @@ state<Point *> *Matrix::createStateFromString(string s) {
     return matrix[Ix][Iy];
 }
 
+// get the initial state in matrix
 state<Point *> *Matrix::getInitialState() {
     return start;
 }
 
-bool Matrix::isGoalStateSate(state<Point *> *s) {
+// check if a given state is the goal state
+bool Matrix::isGoalState(state<Point *> *s) {
     return (s->equals(*end));
 }
 
+// get the goal state of the matrix
 state<Point *> *Matrix::getGoalState() {
     return end;
 }
 
+// given a state, get all the available neighbours in the matrix
 queue<state<Point *> *> Matrix::getAllPossibleStates(state<Point *> *s) {
-    //queue<state<Point*>*>*
     queue<state<Point *> *> states;
     int x = s->getMyState()->x;
     int y = s->getMyState()->y;
-    // states<Point *> *a = matrix[x - 1][y];
     if (x != 0) {
         if (matrix[x - 1][y]->getCost() != -1) {
             states.push(matrix[x - 1][y]); // up
@@ -106,6 +102,7 @@ queue<state<Point *> *> Matrix::getAllPossibleStates(state<Point *> *s) {
     return states;
 }
 
+// given a state, get the previous state and the cost by now
 string Matrix::getDirection(state<Point *> *son) {
     state<Point *> *father = son->getCameFrom();
     int x = son->getMyState()->x;
@@ -127,10 +124,4 @@ string Matrix::getDirection(state<Point *> *son) {
         direction = "Right (" + to_string(son->trailCost) + ")";
         return direction;
     }
-}
-//vector<vector<state<Point*>*>>
-vector<vector<state<Point*>*>>* Matrix::getObj(){
-    return &matrix;
-}
-void Matrix::printMatrix(){
 }

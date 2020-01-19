@@ -1,7 +1,3 @@
-//
-// Created by avital on 09/01/2020.
-//
-
 #include "CacheManager.h"
 #include <functional>
 #include <string>
@@ -10,6 +6,7 @@
 #include <fstream>
 #include <exception>
 
+// saves solutions for recently solved problems in an unordered map and in files
 class FileCacheManager : public CacheManager<string> {
 private:
     unsigned int size;

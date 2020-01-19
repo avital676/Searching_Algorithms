@@ -1,8 +1,6 @@
-//
-// Created by noa on 16/01/2020.
-//
-
 #include "Bfs.h"
+
+// search a path to solve the given problem
 string Bfs::search(Isearchable<Point *> *problem) {
     searchBfs(problem->getInitialState(), problem->getGoalState(), problem);
     if (problem->getGoalState()->getCameFrom() == nullptr) {
@@ -11,6 +9,7 @@ string Bfs::search(Isearchable<Point *> *problem) {
     return backTrace(problem);
 }
 
+// use BFS
 void Bfs::searchBfs(state<Point *> *start, state<Point *> *end, Isearchable<Point *> *problem) {
     state<Point *> *s;
     addToOpenQ(start);

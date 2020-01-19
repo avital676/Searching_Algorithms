@@ -1,29 +1,37 @@
-//
-// Created by avital on 09/01/2020.
-//
-
 #include "MySerialServer.h"
 
+// accept a client and call a method to handle it
 void MySerialServer::start(int socketfd, sockaddr_in address, ClientHandler* c) {
     while (!toStop) {
         // accept a client:
         int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
+        timeval timeout;
+        timeout.tv_sec = 10;
+        timeout.tv_usec = 0;
+        setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeout, sizeof(timeout));
         if (client_socket == -1) {
-            return;
+            if (errno == EWOULDBLOCK || errno == EAGAIN) {
+                // no client, declare timeout and stop accepting clients:
+                cout << "Timeout" << endl;
+                stop();
+                break;
+            }
+            cout << "Error accepting client" << endl;
+            break;
         }
         c->handleClient(client_socket);
     }
 }
 
-
+// stop the server from working
 void MySerialServer::stop() {
     toStop = true;
 }
 
+// open socket for the server on a given port
 int MySerialServer::open(int port, ClientHandler* c) {
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if (socketfd == -1) {
-        //error
         std::cerr << "Could not create a socket" << std::endl;
         return -1;
     }
@@ -34,12 +42,10 @@ int MySerialServer::open(int port, ClientHandler* c) {
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(port);
-
     if (bind(socketfd, (struct sockaddr *) &address, sizeof(address)) == -1) {
         std::cerr << "Could not bind the socket to an IP" << std::endl;
         return -2;
     }
-
     if (listen(socketfd, 5) == -1) {
         std::cerr << "Error during listening command" << std::endl;
         return -3;
@@ -49,6 +55,5 @@ int MySerialServer::open(int port, ClientHandler* c) {
     readThread.join();
     cout << "ok" << endl;
     close(socketfd);
-
     return 0;
 }

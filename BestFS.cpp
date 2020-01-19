@@ -1,11 +1,7 @@
-//
-// Created by avital on 13/01/2020.
-//
-
 #include "BestFS.h"
-//#include <bits/stdc++.h>
 #include <unordered_set>
 
+// search a path to solve the given problem
 string BestFS::search(Isearchable<Point *> *problem) {
     addToOpenQ(problem->getInitialState());
     unordered_set<state<Point *> *> closed;
