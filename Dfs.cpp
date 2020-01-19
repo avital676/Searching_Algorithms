@@ -27,7 +27,7 @@ void Dfs::searchDfs(state<Point *> *start, state<Point *> *end, Isearchable<Poin
         if (it == MySet.end()) {
             s->setCameFrom(start);
             evaluateNodePlus();
-            s->trailCost = start->trailCost + 1;
+            s->trailCost = start->trailCost + s->getCost();
             searchDfs(s, end, problem);
         }
     }
