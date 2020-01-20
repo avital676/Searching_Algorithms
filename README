@@ -2,8 +2,8 @@ EX4
 
 In this program we deal with creating connections between a server and multiple clients. Each client sends a problem
 to the server and waits for a solution. We created several interfaces to represent the problems (Isearchable) and the
-ways to solve them (Solver), and used the Object-Adapter design pattern to 'connect' between the Solver and the objects
-searching for solutions.
+ways to solve them (Solver), and implemented the Bridge design pattern to 'connect' between the Solver and the objects
+searching for solutions using Object-Adapter design pattern.
 
 Our parallel server receives each client on a separate thread, and assigns each client with a HandleClient object. The
 HandleClient handles the client by reading a problem from it and checking if there's already a solution for it in the
@@ -12,5 +12,5 @@ problem (and store it in the cache). In out Main, the Solver is of type SearchSo
 the Solver and the ISearcher (which is an interface of finding a solution for searchable problems).
 
 We implemented the search algorithms BestFS, A*, BFS, DFS, and ran each of them as our ISearcher with 10 different
-matrices as problems sent by clients, and discovered that the _________ algorithm gave the best results. Thus, we chose
-the ISearcher passed to the SearchSolver to be of type ____.
+matrices as problems sent by clients, and discovered that the A* algorithm gave the best results. Thus, we chose
+the ISearcher passed to the SearchSolver to be of type A*.

@@ -22,7 +22,7 @@ namespace boot {
         void main(int port) {
             ISearcher<Point *> *i = new AAStar();
             Solver<Isearchable<Point *> *, string> *sol = new SearchSolver<Point *>(i);
-            CacheManager<string> *c = new FileCacheManager(5);
+            CacheManager<string> *c = new FileCacheManager(10);
             server_side::Server *ser = new MyParallelServer();
             ClientHandler *cli = new MyClientHandler(sol, c);
             ser->open(port, cli);

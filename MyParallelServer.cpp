@@ -18,7 +18,7 @@ void MyParallelServer::start(int socketfd, sockaddr_in address, ClientHandler *c
         // accept a client:
         int client_socket = accept(socketfd, (struct sockaddr *) &address, (socklen_t *) &address);
         timeval timeout;
-        timeout.tv_sec = 10;
+        timeout.tv_sec = 120;
         timeout.tv_usec = 0;
         setsockopt(socketfd, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeout, sizeof(timeout));
         if (client_socket == -1) {
